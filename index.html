@@ -69,14 +69,14 @@ body{font-family:'Tajawal',sans-serif;background:var(--surface);color:var(--text
 .section-center{text-align:center;margin-bottom:2.5rem}
 .section-title{font-size:1.6rem;font-weight:700;color:var(--brand);margin-bottom:.4rem}
 .section-sub{font-size:15px;color:var(--text2)}
-.cats-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;max-width:860px;margin:0 auto}
-.cat-card{background:var(--white);border:1.5px solid var(--border);border-radius:100px;padding:.5rem 1.1rem;text-align:center;cursor:pointer;transition:.2s;display:inline-flex;flex-direction:row;align-items:center;gap:.4rem;white-space:nowrap}
-.cat-card:hover,.cat-card.active{border-color:var(--accent);background:#faf5ff;transform:translateY(-2px)}
-.cat-card.active .cat-svg svg{stroke:#7c3aed}
-.cat-svg{width:22px;height:22px;display:flex;align-items:center;justify-content:center;color:var(--text2);flex-shrink:0}
-.cat-svg svg{width:20px;height:20px;stroke:var(--text2);transition:.2s}
-.cat-card:hover .cat-svg svg,.cat-card.active .cat-svg svg{stroke:#7c3aed}
-.cat-label{font-size:13px;color:var(--text2);font-weight:500}
+
+.cats-grid-wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem;max-width:780px;margin:0 auto}
+.cat-card{background:#fff;border:1.5px solid #e5e7eb;border-radius:10px;padding:.6rem 1.4rem;cursor:pointer;transition:.18s;display:flex;align-items:center;justify-content:center;text-align:center;min-width:90px}
+.cat-card:hover{border-color:#7c3aed;background:#faf5ff}
+.cat-card.active{border-color:#7c3aed;background:#faf5ff}
+.cat-card.active .cat-label{color:#7c3aed;font-weight:600}
+.cat-svg{display:none}
+.cat-label{font-size:13px;color:#374151;font-weight:500;line-height:1;white-space:nowrap}
 
 /* ── SALON CARDS ── */
 .salons-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem;max-width:1100px;margin:0 auto}
@@ -397,7 +397,7 @@ textarea{resize:vertical;min-height:70px}
     <div class="section-title">اكتشفي الخدمات</div>
     <div class="section-sub">اختاري الخدمة التي تبحثين عنها</div>
   </div>
-  <div class="cats-grid">
+  <div class="cats-grid-wrap">
     <div class="cat-card active" onclick="filterByCategory('all',this)"><div class="cat-icon"></div><div class="cat-label">الكل</div></div>
     <div class="cat-card" onclick="filterByCategory('hair',this)"><div class="cat-icon">‍</div><div class="cat-label">الشعر</div></div>
     <div class="cat-card" onclick="filterByCategory('skin',this)"><div class="cat-icon">‍</div><div class="cat-label">البشرة</div></div>
