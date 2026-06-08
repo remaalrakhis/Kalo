@@ -246,12 +246,12 @@ textarea{resize:vertical;min-height:70px}
 
 <!-- ── NAV ── -->
 <nav class="nav" id="mainNav">
-  <button class="menu-toggle" onclick="toggleMobileMenu()" id="menuToggle">☰</button>
+  <button class="menu-toggle" onclick="toggleMobileMenu()" id="menuToggle"></button>
   <div class="nav-links" id="navLinks">
     <button class="nav-link" onclick="showView('home')">اكتشفي</button>
     <button class="nav-link" onclick="showView('ownerPanel');loginAs('owner')">لوحة التحكم</button>
   </div>
-  <div class="nav-logo">لمـسة <b>✦</b></div>
+  <div class="nav-logo" style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:600;letter-spacing:1px">Kalo</div>
   <div style="display:flex;align-items:center;gap:.5rem;margin-right:auto">
     <button class="nav-link" id="loginNavBtn" onclick="showLoginModal()">دخول</button>
     <button class="nav-btn" onclick="showLoginModal()">ابدئي الآن</button>
@@ -279,9 +279,9 @@ textarea{resize:vertical;min-height:70px}
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-tag"><span></span> منصة الحجز الأولى للمشاغل النسائية</div>
-    <h1 class="hero-h1" id="heroHeadline">احجزي لحظتك <em>الخاصة</em><br>في أفضل مشاغل الرياض</h1>
-    <p class="hero-sub" id="heroTagline">اكتشفي آلاف المشاغل المعتمدة، احجزي في ثوانٍ، واستمتعي بتجربة لا تُنسى — كل ذلك في مكان واحد</p>
+    <div class="hero-tag">منصة حجوزات المشاغل في حائل</div>
+    <h1 class="hero-h1" id="heroHeadline">احجزي لحظتك <em>الخاصة</em><br>في أفضل مشاغل حائل</h1>
+    <p class="hero-sub" id="heroTagline">اكتشفي أفضل مشاغل حائل، احجزي في ثوانٍ، واستمتعي بتجربة فريدة — كل ذلك في مكان واحد</p>
     <div class="hero-search">
       <input type="text" placeholder="ابحثي: صبغة، كيراتين، مانيكير..." id="heroSearch" oninput="filterSalons(this.value)">
       <button class="hero-search-btn" onclick="filterSalons(document.getElementById('heroSearch').value)">بحث</button>
@@ -289,7 +289,7 @@ textarea{resize:vertical;min-height:70px}
     <img id="heroUploadedImg" class="hero-uploaded-img" alt="صورة مميزة">
     <div class="upload-hint">هل تريدين إضافة صورة مميزة لصفحتك؟ <span style="color:var(--accent);cursor:pointer" onclick="document.getElementById('upload-zone').classList.toggle('show')">ارفعي صورة</span></div>
     <div class="upload-zone" id="upload-zone">
-      <div style="font-size:1.8rem;margin-bottom:.4rem">🖼</div>
+      <div style="font-size:1.8rem;margin-bottom:.4rem"></div>
       <div style="font-size:13px;color:var(--text2);margin-bottom:.6rem">اسحبي الصورة هنا أو انقري للاختيار</div>
       <input type="file" accept="image/*" id="heroFileInput" style="display:none" onchange="handleHeroUpload(this)">
       <button onclick="document.getElementById('heroFileInput').click()" style="background:var(--accent);color:#fff;border:none;border-radius:100px;padding:.45rem 1.1rem;font-size:13px;cursor:pointer;font-family:'Tajawal',sans-serif">اختيار صورة</button>
@@ -297,7 +297,7 @@ textarea{resize:vertical;min-height:70px}
     <div class="hero-stats">
       <div class="hero-stat"><div class="hero-stat-n">47+</div><div class="hero-stat-l">مشغل معتمد</div></div>
       <div class="hero-stat"><div class="hero-stat-n">8,420</div><div class="hero-stat-l">عميلة راضية</div></div>
-      <div class="hero-stat"><div class="hero-stat-n">4.9 ★</div><div class="hero-stat-l">متوسط التقييم</div></div>
+      <div class="hero-stat"><div class="hero-stat-n">4.9 </div><div class="hero-stat-l">متوسط التقييم</div></div>
     </div>
   </div>
 </section>
@@ -309,13 +309,13 @@ textarea{resize:vertical;min-height:70px}
     <div class="section-sub">اختاري الخدمة التي تبحثين عنها</div>
   </div>
   <div class="cats-grid">
-    <div class="cat-card active" onclick="filterByCategory('all',this)"><div class="cat-icon">✨</div><div class="cat-label">الكل</div></div>
-    <div class="cat-card" onclick="filterByCategory('hair',this)"><div class="cat-icon">💇‍♀️</div><div class="cat-label">الشعر</div></div>
-    <div class="cat-card" onclick="filterByCategory('skin',this)"><div class="cat-icon">🧖‍♀️</div><div class="cat-label">البشرة</div></div>
-    <div class="cat-card" onclick="filterByCategory('nails',this)"><div class="cat-icon">💅</div><div class="cat-label">الأظافر</div></div>
+    <div class="cat-card active" onclick="filterByCategory('all',this)"><div class="cat-icon"></div><div class="cat-label">الكل</div></div>
+    <div class="cat-card" onclick="filterByCategory('hair',this)"><div class="cat-icon">‍</div><div class="cat-label">الشعر</div></div>
+    <div class="cat-card" onclick="filterByCategory('skin',this)"><div class="cat-icon">‍</div><div class="cat-label">البشرة</div></div>
+    <div class="cat-card" onclick="filterByCategory('nails',this)"><div class="cat-icon"></div><div class="cat-label">الأظافر</div></div>
     <div class="cat-card" onclick="filterByCategory('brows',this)"><div class="cat-icon">🪮</div><div class="cat-label">الحواجب</div></div>
-    <div class="cat-card" onclick="filterByCategory('makeup',this)"><div class="cat-icon">💄</div><div class="cat-label">المكياج</div></div>
-    <div class="cat-card" onclick="filterByCategory('spa',this)"><div class="cat-icon">🌸</div><div class="cat-label">السبا</div></div>
+    <div class="cat-card" onclick="filterByCategory('makeup',this)"><div class="cat-icon"></div><div class="cat-label">المكياج</div></div>
+    <div class="cat-card" onclick="filterByCategory('spa',this)"><div class="cat-icon"></div><div class="cat-label">السبا</div></div>
   </div>
 </section>
 
@@ -323,7 +323,7 @@ textarea{resize:vertical;min-height:70px}
 <section class="section" id="salonsSection">
   <div class="section-center">
     <div class="section-title">المشاغل المتاحة</div>
-    <div class="section-sub" id="salonCount">47 مشغل في الرياض</div>
+    <div class="section-sub" id="salonCount">47 مشغل في حائل</div>
   </div>
   <div class="salons-grid" id="salonsGrid"></div>
 </section>
@@ -337,11 +337,11 @@ textarea{resize:vertical;min-height:70px}
   <div class="panel-grid">
     <div class="panel-sidebar" id="panelSidebar">
       <div style="padding:1rem 1.25rem .5rem;font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px">لوحة التحكم</div>
-      <div class="panel-nav-item active" onclick="showPanelPage('pDash',this)"><span class="panel-nav-icon">📊</span> الإحصائيات</div>
-      <div class="panel-nav-item" onclick="showPanelPage('pBookings',this)"><span class="panel-nav-icon">📅</span> الحجوزات</div>
-      <div class="panel-nav-item" onclick="showPanelPage('pStaff',this)"><span class="panel-nav-icon">👥</span> الموظفات</div>
-      <div class="panel-nav-item" onclick="showPanelPage('pServices',this)"><span class="panel-nav-icon">✂️</span> الخدمات</div>
-      <div class="panel-nav-item" onclick="showPanelPage('pSettings',this)"><span class="panel-nav-icon">⚙️</span> الإعدادات</div>
+      <div class="panel-nav-item active" onclick="showPanelPage('pDash',this)"><span class="panel-nav-icon"></span> الإحصائيات</div>
+      <div class="panel-nav-item" onclick="showPanelPage('pBookings',this)"><span class="panel-nav-icon"></span> الحجوزات</div>
+      <div class="panel-nav-item" onclick="showPanelPage('pStaff',this)"><span class="panel-nav-icon"></span> الموظفات</div>
+      <div class="panel-nav-item" onclick="showPanelPage('pServices',this)"><span class="panel-nav-icon"></span> الخدمات</div>
+      <div class="panel-nav-item" onclick="showPanelPage('pSettings',this)"><span class="panel-nav-icon"></span> الإعدادات</div>
       <div style="margin-top:auto;padding:1rem 1.25rem;border-top:1px solid var(--border)">
         <button class="btn-ghost" style="width:100%;justify-content:center" onclick="showView('home')">← العودة للموقع</button>
       </div>
@@ -352,7 +352,7 @@ textarea{resize:vertical;min-height:70px}
       <div id="pDash">
         <div class="flex-between" style="margin-bottom:1.5rem">
           <div>
-            <div style="font-size:1.3rem;font-weight:700;color:var(--brand)">أهلاً، مشغل الورد 🌸</div>
+            <div style="font-size:1.3rem;font-weight:700;color:var(--brand)">أهلاً، مشغل الورد</div>
             <div style="font-size:13px;color:var(--text3);margin-top:2px">الأحد، 25 مايو 2025</div>
           </div>
           <button class="btn-primary" onclick="showBookingModal(salons[0])">+ حجز يدوي</button>
@@ -369,8 +369,8 @@ textarea{resize:vertical;min-height:70px}
             <thead><tr><th>العميلة</th><th>الخدمة</th><th>الموظفة</th><th>الوقت</th><th>الحالة</th><th>الإجراء</th></tr></thead>
             <tbody>
               <tr><td>سارة أحمد</td><td>قص وسشوار</td><td>نورة</td><td>9:30 ص</td><td><span class="badge badge-green">مكتمل</span></td><td><button class="btn-ghost" style="padding:.3rem .8rem;font-size:12px" onclick="toast('تفاصيل الحجز')">تفاصيل</button></td></tr>
-              <tr><td>منى خالد</td><td>صبغة كاملة</td><td>سلمى</td><td>11:00 ص</td><td><span class="badge badge-purple">مؤكد</span></td><td><button class="btn-ghost" style="padding:.3rem .8rem;font-size:12px" onclick="toast('تم التأكيد ✓')">تأكيد</button></td></tr>
-              <tr><td>هند ناصر</td><td>عناية بشرة</td><td>ليلى</td><td>1:00 م</td><td><span class="badge badge-yellow">انتظار</span></td><td><button class="btn-primary" style="padding:.3rem .8rem;font-size:12px;border-radius:100px" onclick="toast('تم التأكيد ✓')">قبول</button></td></tr>
+              <tr><td>منى خالد</td><td>صبغة كاملة</td><td>سلمى</td><td>11:00 ص</td><td><span class="badge badge-purple">مؤكد</span></td><td><button class="btn-ghost" style="padding:.3rem .8rem;font-size:12px" onclick="toast('تم التأكيد ')">تأكيد</button></td></tr>
+              <tr><td>هند ناصر</td><td>عناية بشرة</td><td>ليلى</td><td>1:00 م</td><td><span class="badge badge-yellow">انتظار</span></td><td><button class="btn-primary" style="padding:.3rem .8rem;font-size:12px;border-radius:100px" onclick="toast('تم التأكيد ')">قبول</button></td></tr>
             </tbody>
           </table></div>
         </div>
@@ -392,7 +392,7 @@ textarea{resize:vertical;min-height:70px}
           <tbody>
             <tr><td style="color:var(--text3)">#1024</td><td>سارة أحمد</td><td>قص وسشوار</td><td>نورة</td><td>25/05</td><td>9:30 ص</td><td>150 ر</td><td><span class="badge badge-green">مكتمل</span></td><td><button class="btn-ghost" style="padding:.3rem .7rem;font-size:12px" onclick="toast('تفاصيل #1024')">تفاصيل</button></td></tr>
             <tr><td style="color:var(--text3)">#1025</td><td>منى خالد</td><td>صبغة</td><td>سلمى</td><td>25/05</td><td>11:00 ص</td><td>280 ر</td><td><span class="badge badge-purple">مؤكد</span></td><td><button class="btn-ghost" style="padding:.3rem .7rem;font-size:12px" onclick="toast('تم الإلغاء')">إلغاء</button></td></tr>
-            <tr><td style="color:var(--text3)">#1026</td><td>هند ناصر</td><td>بشرة</td><td>ليلى</td><td>26/05</td><td>1:00 م</td><td>200 ر</td><td><span class="badge badge-yellow">انتظار</span></td><td><button class="btn-primary" style="padding:.3rem .7rem;font-size:12px;border-radius:100px" onclick="toast('تم التأكيد ✓')">تأكيد</button></td></tr>
+            <tr><td style="color:var(--text3)">#1026</td><td>هند ناصر</td><td>بشرة</td><td>ليلى</td><td>26/05</td><td>1:00 م</td><td>200 ر</td><td><span class="badge badge-yellow">انتظار</span></td><td><button class="btn-primary" style="padding:.3rem .7rem;font-size:12px;border-radius:100px" onclick="toast('تم التأكيد ')">تأكيد</button></td></tr>
           </tbody>
         </table></div></div>
       </div>
@@ -429,7 +429,7 @@ textarea{resize:vertical;min-height:70px}
               <span class="badge badge-yellow" style="margin-right:auto">إجازة</span>
             </div>
             <div style="font-size:12px;color:var(--text2);margin-bottom:.75rem">الإثنين – الجمعة · 11 ص – 8 م</div>
-            <div style="display:flex;gap:.4rem"><button class="btn-ghost" style="padding:.35rem .8rem;font-size:12px" onclick="toast('تعديل ليلى')">تعديل</button><button class="btn-primary" style="padding:.35rem .8rem;font-size:12px;border-radius:100px" onclick="toast('تم التفعيل ✓')">تفعيل</button></div>
+            <div style="display:flex;gap:.4rem"><button class="btn-ghost" style="padding:.35rem .8rem;font-size:12px" onclick="toast('تعديل ليلى')">تعديل</button><button class="btn-primary" style="padding:.35rem .8rem;font-size:12px;border-radius:100px" onclick="toast('تم التفعيل ')">تفعيل</button></div>
           </div>
         </div>
       </div>
@@ -447,7 +447,7 @@ textarea{resize:vertical;min-height:70px}
             <tr><td style="font-weight:500">صبغة كاملة</td><td>شعر</td><td>90 د</td><td>280 ر</td><td><span class="badge badge-green">نشط</span></td><td><button class="btn-ghost" style="padding:.3rem .7rem;font-size:12px" onclick="toast('تعديل الخدمة')">تعديل</button></td></tr>
             <tr><td style="font-weight:500">عناية بشرة</td><td>بشرة</td><td>60 د</td><td>200 ر</td><td><span class="badge badge-green">نشط</span></td><td><button class="btn-ghost" style="padding:.3rem .7rem;font-size:12px" onclick="toast('تعديل الخدمة')">تعديل</button></td></tr>
             <tr><td style="font-weight:500">مانيكير وبيدكير</td><td>أظافر</td><td>50 د</td><td>120 ر</td><td><span class="badge badge-green">نشط</span></td><td><button class="btn-ghost" style="padding:.3rem .7rem;font-size:12px" onclick="toast('تعديل الخدمة')">تعديل</button></td></tr>
-            <tr><td style="font-weight:500">كيراتين</td><td>شعر</td><td>120 د</td><td>450 ر</td><td><span class="badge badge-yellow">مخفي</span></td><td><button class="btn-primary" style="padding:.3rem .7rem;font-size:12px;border-radius:100px" onclick="toast('تم الإظهار ✓')">إظهار</button></td></tr>
+            <tr><td style="font-weight:500">كيراتين</td><td>شعر</td><td>120 د</td><td>450 ر</td><td><span class="badge badge-yellow">مخفي</span></td><td><button class="btn-primary" style="padding:.3rem .7rem;font-size:12px;border-radius:100px" onclick="toast('تم الإظهار ')">إظهار</button></td></tr>
           </tbody>
         </table></div></div>
       </div>
@@ -460,7 +460,7 @@ textarea{resize:vertical;min-height:70px}
             <div class="form-group full"><div class="form-label">اسم المشغل</div><input value="مشغل الورد"></div>
             <div class="form-group"><div class="form-label">رقم الجوال</div><input value="0501234567"></div>
             <div class="form-group"><div class="form-label">البريد الإلكتروني</div><input value="info@alward.sa"></div>
-            <div class="form-group full"><div class="form-label">العنوان</div><input value="حي النرجس، الرياض"></div>
+            <div class="form-group full"><div class="form-label">العنوان</div><input value="حي النرجس، حائل"></div>
           </div>
           <div class="divider"></div>
           <div style="font-size:13px;font-weight:600;color:var(--text2);margin-bottom:.75rem">طرق الدفع</div>
@@ -469,7 +469,7 @@ textarea{resize:vertical;min-height:70px}
             <label style="display:flex;align-items:center;gap:8px;font-size:14px;font-weight:400;cursor:pointer"><input type="checkbox" checked style="accent-color:var(--accent);width:15px;height:15px"> مدى</label>
             <label style="display:flex;align-items:center;gap:8px;font-size:14px;font-weight:400;cursor:pointer"><input type="checkbox" checked style="accent-color:var(--accent);width:15px;height:15px"> Visa / Mastercard</label>
           </div>
-          <button class="btn-primary" onclick="toast('تم حفظ الإعدادات ✓')">حفظ التغييرات</button>
+          <button class="btn-primary" onclick="toast('تم حفظ الإعدادات ')">حفظ التغييرات</button>
         </div>
       </div>
 
@@ -485,7 +485,7 @@ textarea{resize:vertical;min-height:70px}
     <span class="bmodal-handle"></span>
     <div class="bmodal-head">
       <div class="bmodal-title" id="bmodal-salonName">احجزي موعدك</div>
-      <button class="bmodal-close" onclick="closeModal('bookingOverlay')">✕</button>
+      <button class="bmodal-close" onclick="closeModal('bookingOverlay')"></button>
     </div>
     <div class="bmodal-body">
       <!-- Map inside modal -->
@@ -493,7 +493,7 @@ textarea{resize:vertical;min-height:70px}
         <div class="bmodal-map" id="bmodal-mapWrap">
           <iframe id="bmodalMapIframe" src="" loading="lazy" title="موقع المشغل" allowfullscreen></iframe>
         </div>
-        <a class="bmodal-map-link" id="bmodalMapLink" href="#" target="_blank">📍 عرض الموقع على خرائط جوجل ↗</a>
+        <a class="bmodal-map-link" id="bmodalMapLink" href="#" target="_blank"> عرض الموقع على خرائط جوجل →</a>
       </div>
       <!-- Steps -->
       <div class="steps">
@@ -516,7 +516,7 @@ textarea{resize:vertical;min-height:70px}
           <div class="staff-chip" onclick="selectStaff(this,'نورة','أخصائية شعر')"><div class="staff-av">نو</div><div class="staff-nm">نورة</div><div class="staff-role">شعر</div></div>
           <div class="staff-chip" onclick="selectStaff(this,'سلمى','أخصائية بشرة')"><div class="staff-av">سا</div><div class="staff-nm">سلمى</div><div class="staff-role">بشرة</div></div>
           <div class="staff-chip" onclick="selectStaff(this,'ليلى','أخصائية أظافر')"><div class="staff-av">لي</div><div class="staff-nm">ليلى</div><div class="staff-role">أظافر</div></div>
-          <div class="staff-chip" onclick="selectStaff(this,'أي موظفة','متاحة')"><div class="staff-av" style="background:#f3f4f6;color:var(--text3)">🎲</div><div class="staff-nm">أي موظفة</div><div class="staff-role">متاحة</div></div>
+          <div class="staff-chip" onclick="selectStaff(this,'أي موظفة','متاحة')"><div class="staff-av" style="background:#f3f4f6;color:var(--text3)"></div><div class="staff-nm">أي موظفة</div><div class="staff-role">متاحة</div></div>
         </div>
         <div style="display:flex;justify-content:flex-end;gap:.5rem;margin-top:1rem">
           <button class="btn-ghost" onclick="goBstep(1)">السابق</button>
@@ -564,12 +564,12 @@ textarea{resize:vertical;min-height:70px}
         </div>
         <div style="display:flex;gap:.5rem;margin-bottom:1rem">
           <input type="text" placeholder="كوبون خصم" style="flex:1">
-          <button class="btn-ghost" onclick="toast('تم تطبيق خصم 15% ✓')">تطبيق</button>
+          <button class="btn-ghost" onclick="toast('تم تطبيق خصم 15% ')">تطبيق</button>
         </div>
         <div style="display:flex;justify-content:flex-end;gap:.5rem;margin-bottom:.75rem">
           <button class="btn-ghost" onclick="goBstep(3)">السابق</button>
         </div>
-        <button class="confirm-btn" onclick="confirmBooking()">تأكيد الحجز ✓</button>
+        <button class="confirm-btn" onclick="confirmBooking()">تأكيد الحجز </button>
       </div>
 
     </div>
@@ -581,11 +581,11 @@ textarea{resize:vertical;min-height:70px}
   <div class="map-modal">
     <div class="map-modal-head">
       <b id="mapModalTitle" style="font-size:15px;color:var(--brand)">موقع المشغل</b>
-      <button class="bmodal-close" onclick="closeModal('mapOverlay')">✕</button>
+      <button class="bmodal-close" onclick="closeModal('mapOverlay')"></button>
     </div>
     <div class="map-full"><iframe id="mapFullIframe" src="" loading="lazy" title="خريطة المشغل" allowfullscreen></iframe></div>
     <div class="map-modal-foot">
-      <a id="mapDirectLink" href="#" target="_blank" class="btn-primary" style="text-decoration:none;font-size:13px">فتح في خرائط جوجل ↗</a>
+      <a id="mapDirectLink" href="#" target="_blank" class="btn-primary" style="text-decoration:none;font-size:13px">فتح في خرائط جوجل →</a>
       <button class="btn-ghost" onclick="closeModal('mapOverlay')">إغلاق</button>
     </div>
   </div>
@@ -594,11 +594,11 @@ textarea{resize:vertical;min-height:70px}
 <!-- LOGIN MODAL -->
 <div class="map-overlay" id="loginOverlay" onclick="overlayClick(event,'loginOverlay')">
   <div class="map-modal" style="max-width:400px">
-    <div class="map-modal-head"><b style="font-size:15px;color:var(--brand)">تسجيل الدخول</b><button class="bmodal-close" onclick="closeModal('loginOverlay')">✕</button></div>
+    <div class="map-modal-head"><b style="font-size:15px;color:var(--brand)">تسجيل الدخول</b><button class="bmodal-close" onclick="closeModal('loginOverlay')"></button></div>
     <div style="padding:1.5rem">
       <div style="display:flex;gap:.4rem;margin-bottom:1.25rem">
         <button id="ltab1" class="btn-primary" style="flex:1;border-radius:100px;font-size:13px" onclick="setLoginTab(1)">عميلة</button>
-        <button id="ltab2" class="btn-ghost" style="flex:1;border-radius:100px;font-size:13px" onclick="setLoginTab(2)">مالكة مشغل</button>
+        <button id="ltab2" class="btn-ghost" style="flex:1;border-radius:100px;font-size:13px" onclick="setLoginTab(2)">صاحبة مشغل</button>
       </div>
       <div class="gap-sm">
         <div class="form-group"><div class="form-label">رقم الجوال / البريد</div><input type="text" placeholder="05xxxxxxxx"></div>
@@ -607,7 +607,7 @@ textarea{resize:vertical;min-height:70px}
         <div style="text-align:center;font-size:12px;color:var(--text3)">— أو دخول سريع —</div>
         <div style="display:flex;gap:.4rem">
           <button class="btn-ghost" style="flex:1;font-size:12px;border-radius:100px" onclick="loginAs('client')">دخول كعميلة</button>
-          <button class="btn-ghost" style="flex:1;font-size:12px;border-radius:100px" onclick="loginAs('owner')">دخول كمالكة</button>
+          <button class="btn-ghost" style="flex:1;font-size:12px;border-radius:100px" onclick="loginAs('owner')">دخول كصاحبة</button>
         </div>
       </div>
     </div>
@@ -621,23 +621,23 @@ const MONTHS=['يناير','فبراير','مارس','أبريل','مايو','ي
 const DAYS=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
 
 const salons=[
-  {id:1,name:'مشغل الورد',emoji:'🌸',area:'حي النرجس، الرياض',rating:4.9,reviews:128,tags:['شعر','بشرة','أظافر'],from:80,hours:'9 ص – 9 م',avail:'متاح اليوم',cats:['hair','skin','nails'],
-   lat:24.7975,lng:46.6914,mapQ:'مشغل+الورد+حي+النرجس+الرياض',
+  {id:1,name:'مشغل الورد',emoji:'',area:'حي النرجس، حائل',rating:4.9,reviews:128,tags:['شعر','بشرة','أظافر'],from:80,hours:'9 ص – 9 م',avail:'متاح اليوم',cats:['hair','skin','nails'],
+   lat:27.5219,lng:41.7054,mapQ:'مشغل+الورد+حي+النرجس+حائل',
    services:[{name:'قص وسشوار',dur:'45 د',price:150},{name:'صبغة كاملة',dur:'90 د',price:280},{name:'عناية بالبشرة',dur:'60 د',price:200},{name:'مانيكير وبيدكير',dur:'50 د',price:120},{name:'كيراتين',dur:'120 د',price:450}]},
-  {id:2,name:'لوكشري بيوتي',emoji:'✨',area:'حي العليا، الرياض',rating:4.8,reviews:96,tags:['شعر','كيراتين'],from:120,hours:'10 ص – 10 م',avail:'',cats:['hair'],
-   lat:24.6921,lng:46.6761,mapQ:'لوكشري+بيوتي+العليا+الرياض',
+  {id:2,name:'مشغل الجوهرة',emoji:'',area:'حي العليا، حائل',rating:4.8,reviews:96,tags:['شعر','كيراتين'],from:120,hours:'10 ص – 10 م',avail:'',cats:['hair'],
+   lat:27.5114,lng:41.7208,mapQ:'مشغل+الجوهرة+العليا+حائل',
    services:[{name:'قص وسشوار',dur:'45 د',price:150},{name:'كيراتين',dur:'120 د',price:450},{name:'صبغة شعر',dur:'90 د',price:280}]},
-  {id:3,name:'نيل آرت ستوديو',emoji:'💅',area:'حي الملقا، الرياض',rating:4.7,reviews:54,tags:['أظافر','مانيكير'],from:80,hours:'10 ص – 9 م',avail:'متاح اليوم',cats:['nails'],
-   lat:24.8166,lng:46.6381,mapQ:'نيل+آرت+ستوديو+الملقا+الرياض',
+  {id:3,name:'نيل آرت ستوديو',emoji:'',area:'حي الملقا، حائل',rating:4.7,reviews:54,tags:['أظافر','مانيكير'],from:80,hours:'10 ص – 9 م',avail:'متاح اليوم',cats:['nails'],
+   lat:27.5298,lng:41.7381,mapQ:'نيل+آرت+ستوديو+الملقا+حائل',
    services:[{name:'مانيكير',dur:'40 د',price:80},{name:'بيدكير',dur:'45 د',price:90},{name:'مانيكير وبيدكير',dur:'80 د',price:150},{name:'جل نيلز',dur:'60 د',price:120}]},
-  {id:4,name:'جلو سبا',emoji:'🧖‍♀️',area:'حي الحمراء، الرياض',rating:4.9,reviews:210,tags:['بشرة','سبا','مكياج'],from:150,hours:'9 ص – 11 م',avail:'متاح اليوم',cats:['skin','spa','makeup'],
-   lat:24.6408,lng:46.7724,mapQ:'جلو+سبا+الحمراء+الرياض',
+  {id:4,name:'جلو سبا',emoji:'',area:'حي الحمراء، حائل',rating:4.9,reviews:210,tags:['بشرة','سبا','مكياج'],from:150,hours:'9 ص – 11 م',avail:'متاح اليوم',cats:['skin','spa','makeup'],
+   lat:27.5031,lng:41.7614,mapQ:'جلو+سبا+الحمراء+حائل',
    services:[{name:'جلسة بشرة عميقة',dur:'60 د',price:200},{name:'مكياج عرائس',dur:'90 د',price:450},{name:'سبا استرخاء',dur:'75 د',price:280}]},
-  {id:5,name:'براوز كيو',emoji:'🪮',area:'حي الياسمين، الرياض',rating:4.6,reviews:78,tags:['حواجب','تصميم'],from:60,hours:'10 ص – 8 م',avail:'',cats:['brows'],
-   lat:24.8381,lng:46.6536,mapQ:'براوز+كيو+الياسمين+الرياض',
+  {id:5,name:'براوز كيو',emoji:'',area:'حي الياسمين، حائل',rating:4.6,reviews:78,tags:['حواجب','تصميم'],from:60,hours:'10 ص – 8 م',avail:'',cats:['brows'],
+   lat:27.5412,lng:41.6936,mapQ:'براوز+كيو+الياسمين+حائل',
    services:[{name:'تصميم الحواجب',dur:'30 د',price:60},{name:'تخفيف وتصميم',dur:'45 د',price:90},{name:'صبغة حواجب',dur:'20 د',price:40}]},
-  {id:6,name:'مشغل الياسمين',emoji:'🌼',area:'حي الملك عبدالله، الرياض',rating:4.8,reviews:143,tags:['شعر','بشرة'],from:100,hours:'9 ص – 9 م',avail:'متاح اليوم',cats:['hair','skin'],
-   lat:24.7526,lng:46.6887,mapQ:'مشغل+الياسمين+الرياض',
+  {id:6,name:'مشغل الياسمين',emoji:'',area:'حي الملك عبدالله، حائل',rating:4.8,reviews:143,tags:['شعر','بشرة'],from:100,hours:'9 ص – 9 م',avail:'متاح اليوم',cats:['hair','skin'],
+   lat:27.5167,lng:41.7287,mapQ:'مشغل+الياسمين+حائل',
    services:[{name:'قص وسشوار',dur:'45 د',price:140},{name:'صبغة كاملة',dur:'85 د',price:260},{name:'بوتوكس شعر',dur:'90 د',price:380}]}
 ];
 
@@ -662,15 +662,15 @@ function renderSalons(){
     <div class="salon-card" id="scard-${s.id}">
       <div class="salon-map">
         <iframe src="${mapSrc(s.mapQ,s.lat,s.lng)}" title="${s.name}" loading="lazy" allowfullscreen></iframe>
-        <a class="salon-map-expand" onclick="openFullMap(${s.id});return false" href="#">📍 عرض الخريطة</a>
+        <a class="salon-map-expand" onclick="openFullMap(${s.id});return false" href="#">الموقع على الخريطة</a>
       </div>
       <div class="salon-body">
         <div class="salon-top">
           <div class="salon-name">${s.emoji} ${s.name}</div>
           <div class="salon-rating"><span>⭐</span> ${s.rating} (${s.reviews})</div>
         </div>
-        <div class="salon-loc">📍 ${s.area}</div>
-        ${s.avail?`<div class="salon-avail">✓ ${s.avail}</div>`:''}
+        <div class="salon-loc"> ${s.area}</div>
+        ${s.avail?`<div class="salon-avail">متاح اليوم</div>`:''}
         <div class="salon-tags">${s.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
         <div class="salon-bottom">
           <div class="salon-price">تبدأ من <b>${s.from} ريال</b> · ⏰ ${s.hours}</div>
@@ -678,7 +678,7 @@ function renderSalons(){
         </div>
       </div>
     </div>`).join('');
-  document.getElementById('salonCount').textContent=filteredSalons.length+' مشغل في الرياض';
+  document.getElementById('salonCount').textContent=filteredSalons.length+' مشغل في حائل';
 }
 
 function filterSalons(q){
@@ -710,10 +710,10 @@ function openFullMap(salonId){
 function showBookingModal(s){
   if(!s)return;
   bState={salonId:s.id,svcName:'',svcPrice:0,staffName:'',date:'',time:'',step:1};
-  document.getElementById('bmodal-salonName').textContent=s.emoji+' '+s.name;
+  document.getElementById('bmodal-salonName').textContent=s.name;
   document.getElementById('bmodalMapIframe').src=mapSrc(s.mapQ,s.lat,s.lng);
   document.getElementById('bmodalMapLink').href=mapLink(s.lat,s.lng,s.mapQ);
-  document.getElementById('bmodalMapLink').textContent='📍 '+s.area+' — فتح في خرائط جوجل ↗';
+  document.getElementById('bmodalMapLink').textContent='الموقع: '+s.area+' — فتح في خرائط جوجل →';
   const sl=document.getElementById('servicesList');
   sl.innerHTML=s.services.map(sv=>`
     <div class="svc-item" onclick="selService(this,'${sv.name}',${sv.price})">
@@ -771,7 +771,7 @@ function fillSummary(){
 
 function confirmBooking(){
   closeModal('bookingOverlay');
-  toast('✅ تم تأكيد حجزك! ستصلك رسالة على جوالك');
+  toast(' تم تأكيد حجزك! ستصلك رسالة على جوالك');
 }
 
 function renderCalModal(){
@@ -833,7 +833,7 @@ function loginAs(role){
   userRole=role;
   closeModal('loginOverlay');
   if(role==='owner'){showView('ownerPanel');}
-  else{showView('home'); toast('مرحباً بك 👋');}
+  else{showView('home'); toast('مرحباً بك في Kalo!');}
 }
 
 function doQuickLogin(){loginAs('client');}
@@ -857,7 +857,7 @@ function handleHeroUpload(input){
     uimg.src=e.target.result;uimg.style.display='block';
     document.getElementById('heroBgSvg').style.display='none';
     document.getElementById('upload-zone').classList.remove('show');
-    toast('تم رفع الصورة المميزة ✓');
+    toast('تم رفع الصورة المميزة ');
   };
   r.readAsDataURL(input.files[0]);
 }
