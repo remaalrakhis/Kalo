@@ -45,17 +45,17 @@ body{font-family:'Tajawal',sans-serif;background:var(--surface);color:var(--text
 .hero-tag{display:inline-flex;align-items:center;gap:6px;background:#f3e8ff;color:var(--accent);border-radius:100px;padding:5px 14px;font-size:12px;font-weight:500;margin-bottom:1.25rem;border:1px solid #e9d5ff;letter-spacing:.3px}
 .hero-tag span{width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block}
 .hero-h1{font-size:clamp(1.9rem,5vw,3.2rem);font-weight:800;line-height:1.2;color:var(--brand);margin-bottom:1rem}
-.hero-h1 em{font-family:'Playfair Display',serif;font-style:italic;color:var(--accent)}
+
 .hero-sub{font-size:1rem;color:var(--text2);line-height:1.65;margin-bottom:2rem;font-weight:400;max-width:480px;margin-left:auto;margin-right:auto}
 .hero-search{background:var(--white);border-radius:100px;padding:.45rem .45rem .45rem 1.25rem;display:flex;align-items:center;gap:.5rem;box-shadow:0 2px 20px rgba(124,58,237,.1);border:1.5px solid rgba(124,58,237,.2);max-width:460px;width:100%;margin:0 auto 1.75rem}
 .hero-search input{flex:1;border:none;outline:none;font-family:'Tajawal',sans-serif;font-size:15px;background:transparent;color:var(--text1);min-width:0}
 .hero-search input::placeholder{color:var(--text3)}
 .hero-search-btn{background:var(--accent);color:#fff;border:none;border-radius:100px;padding:.65rem 1.6rem;font-size:14px;font-weight:500;cursor:pointer;font-family:'Tajawal',sans-serif;white-space:nowrap;transition:.15s}
 .hero-search-btn:hover{background:#6d28d9}
-.hero-stats{display:flex;justify-content:center;align-items:center;gap:0;background:rgba(255,255,255,.7);border:1px solid rgba(124,58,237,.15);border-radius:100px;padding:.5rem 1.5rem;margin:0 auto;width:fit-content}
-.hero-stat{text-align:center;padding:.25rem 1.25rem}
-.hero-stat-n{font-size:1.2rem;font-weight:700;color:var(--brand)}
-.hero-stat-l{font-size:11px;color:var(--text2);margin-top:1px}
+.hero-stats{display:flex;justify-content:center;align-items:center;gap:0;background:rgba(255,255,255,.82);border:1px solid rgba(124,58,237,.13);border-radius:16px;padding:.75rem 1.5rem;margin:0 auto;width:100%;max-width:560px}
+.hero-stat{text-align:center;padding:.25rem 1.5rem;flex:1}
+.hero-stat-n{font-size:1.1rem;font-weight:700;color:var(--brand)}
+.hero-stat-l{font-size:12px;color:var(--text2);margin-top:2px}
 .hero-stat-divider{width:1px;height:28px;background:rgba(124,58,237,.2)}
 /* Upload hint */
 .upload-hint{font-size:12px;color:var(--text3);margin-top:.75rem}
@@ -69,14 +69,14 @@ body{font-family:'Tajawal',sans-serif;background:var(--surface);color:var(--text
 .section-center{text-align:center;margin-bottom:2.5rem}
 .section-title{font-size:1.6rem;font-weight:700;color:var(--brand);margin-bottom:.4rem}
 .section-sub{font-size:15px;color:var(--text2)}
-.cats-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:.65rem;max-width:900px;margin:0 auto}
-.cat-card{background:var(--white);border:1.5px solid var(--border);border-radius:14px;padding:1.1rem .75rem;text-align:center;cursor:pointer;transition:.2s;display:flex;flex-direction:column;align-items:center;gap:.5rem}
+.cats-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;max-width:860px;margin:0 auto}
+.cat-card{background:var(--white);border:1.5px solid var(--border);border-radius:10px;padding:.6rem 1.1rem;text-align:center;cursor:pointer;transition:.2s;display:flex;flex-direction:row;align-items:center;gap:.5rem;white-space:nowrap}
 .cat-card:hover,.cat-card.active{border-color:var(--accent);background:#faf5ff;transform:translateY(-2px)}
 .cat-card.active .cat-svg svg{stroke:#7c3aed}
-.cat-svg{width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:var(--text2)}
-.cat-svg svg{width:28px;height:28px;stroke:var(--text2);transition:.2s}
+.cat-svg{width:22px;height:22px;display:flex;align-items:center;justify-content:center;color:var(--text2);flex-shrink:0}
+.cat-svg svg{width:20px;height:20px;stroke:var(--text2);transition:.2s}
 .cat-card:hover .cat-svg svg,.cat-card.active .cat-svg svg{stroke:#7c3aed}
-.cat-label{font-size:12px;color:var(--text2);font-weight:500}
+.cat-label{font-size:13px;color:var(--text2);font-weight:500}
 
 /* ── SALON CARDS ── */
 .salons-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem;max-width:1100px;margin:0 auto}
@@ -265,8 +265,8 @@ textarea{resize:vertical;min-height:70px}
 @media(max-width:640px){
   .hero-h1{font-size:2rem}
   .hero-sub{font-size:.95rem}
-  .hero-stats{padding:.4rem 1rem;gap:0}
-  .hero-stat{padding:.2rem .75rem}
+  .hero-stats{padding:.6rem 1rem;max-width:100%}
+  .hero-stat{padding:.2rem .5rem}
   .hero-stat-n{font-size:1rem}
   .hero-stat-l{font-size:10px}
   .hero-stat-divider{height:22px}
@@ -335,7 +335,7 @@ textarea{resize:vertical;min-height:70px}
 <!-- ── NAV ── -->
 <nav class="nav" id="mainNav">
   <button class="menu-toggle" onclick="toggleMobileMenu()" id="menuToggle"></button>
-  <div class="nav-logo" style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:600;letter-spacing:1px;margin-left:auto">Kalo</div>
+  <div class="nav-logo" style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;letter-spacing:2px;margin-left:auto;color:#3d1a7a">Kalo</div>
   <div style="display:flex;align-items:center;gap:.5rem;margin-right:auto">
     <button class="nav-link" id="loginNavBtn" onclick="showLoginModal()">تسجيل دخول</button>
     <button class="nav-btn" onclick="showRegisterModal()">سجلي الآن</button>
@@ -357,8 +357,8 @@ textarea{resize:vertical;min-height:70px}
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-tag">منصة حجوزات المشاغل في حائل</div>
-    <h1 class="hero-h1" id="heroHeadline">احجزي لحظتك <em>الخاصة</em><br>في أفضل مشاغل حائل</h1>
+    
+    <h1 class="hero-h1" id="heroHeadline">احجزي لحظتك الخاصة<br>في أفضل مشاغل <span style="color:#7c3aed">حائل</span></h1>
     <p class="hero-sub" id="heroTagline">اكتشفي أفضل مشاغل حائل، احجزي في ثوانٍ، واستمتعي بتجربة فريدة — كل ذلك في مكان واحد</p>
     <div class="hero-search">
       <input type="text" placeholder="ابحثي: صبغة، كيراتين، مانيكير..." id="heroSearch" oninput="filterSalons(this.value)">
@@ -401,7 +401,7 @@ textarea{resize:vertical;min-height:70px}
     <div class="cat-card" onclick="filterByCategory('hair',this)"><div class="cat-icon">‍</div><div class="cat-label">الشعر</div></div>
     <div class="cat-card" onclick="filterByCategory('skin',this)"><div class="cat-icon">‍</div><div class="cat-label">البشرة</div></div>
     <div class="cat-card" onclick="filterByCategory('nails',this)"><div class="cat-icon"></div><div class="cat-label">الأظافر</div></div>
-    <div class="cat-card" onclick="filterByCategory('brows',this)"><div class="cat-icon">🪮</div><div class="cat-label">الحواجب</div></div>
+    <div class="cat-card" onclick="filterByCategory('brows',this)"><div class="cat-icon"></div><div class="cat-label">الحواجب</div></div>
     <div class="cat-card" onclick="filterByCategory('makeup',this)"><div class="cat-icon"></div><div class="cat-label">المكياج</div></div>
     <div class="cat-card" onclick="filterByCategory('spa',this)"><div class="cat-icon"></div><div class="cat-label">السبا</div></div>
   </div>
@@ -758,24 +758,21 @@ const MONTHS=['يناير','فبراير','مارس','أبريل','مايو','ي
 const DAYS=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
 
 const salons=[
-  {id:1,name:'مشغل الورد',emoji:'',area:'حي النرجس، حائل',rating:4.9,reviews:128,tags:['شعر','بشرة','أظافر'],from:80,hours:'9 ص – 9 م',avail:'متاح اليوم',cats:['hair','skin','nails'],
-   lat:27.5219,lng:41.7054,mapQ:'مشغل+الورد+حي+النرجس+حائل',
-   services:[{name:'قص وسشوار',dur:'45 د',price:150},{name:'صبغة كاملة',dur:'90 د',price:280},{name:'عناية بالبشرة',dur:'60 د',price:200},{name:'مانيكير وبيدكير',dur:'50 د',price:120},{name:'كيراتين',dur:'120 د',price:450}]},
-  {id:2,name:'مشغل الجوهرة',emoji:'',area:'حي العليا، حائل',rating:4.8,reviews:96,tags:['شعر','كيراتين'],from:120,hours:'10 ص – 10 م',avail:'',cats:['hair'],
-   lat:27.5114,lng:41.7208,mapQ:'مشغل+الجوهرة+العليا+حائل',
-   services:[{name:'قص وسشوار',dur:'45 د',price:150},{name:'كيراتين',dur:'120 د',price:450},{name:'صبغة شعر',dur:'90 د',price:280}]},
-  {id:3,name:'نيل آرت ستوديو',emoji:'',area:'حي الملقا، حائل',rating:4.7,reviews:54,tags:['أظافر','مانيكير'],from:80,hours:'10 ص – 9 م',avail:'متاح اليوم',cats:['nails'],
-   lat:27.5298,lng:41.7381,mapQ:'نيل+آرت+ستوديو+الملقا+حائل',
-   services:[{name:'مانيكير',dur:'40 د',price:80},{name:'بيدكير',dur:'45 د',price:90},{name:'مانيكير وبيدكير',dur:'80 د',price:150},{name:'جل نيلز',dur:'60 د',price:120}]},
-  {id:4,name:'جلو سبا',emoji:'',area:'حي الحمراء، حائل',rating:4.9,reviews:210,tags:['بشرة','سبا','مكياج'],from:150,hours:'9 ص – 11 م',avail:'متاح اليوم',cats:['skin','spa','makeup'],
-   lat:27.5031,lng:41.7614,mapQ:'جلو+سبا+الحمراء+حائل',
-   services:[{name:'جلسة بشرة عميقة',dur:'60 د',price:200},{name:'مكياج عرائس',dur:'90 د',price:450},{name:'سبا استرخاء',dur:'75 د',price:280}]},
-  {id:5,name:'براوز كيو',emoji:'',area:'حي الياسمين، حائل',rating:4.6,reviews:78,tags:['حواجب','تصميم'],from:60,hours:'10 ص – 8 م',avail:'',cats:['brows'],
-   lat:27.5412,lng:41.6936,mapQ:'براوز+كيو+الياسمين+حائل',
-   services:[{name:'تصميم الحواجب',dur:'30 د',price:60},{name:'تخفيف وتصميم',dur:'45 د',price:90},{name:'صبغة حواجب',dur:'20 د',price:40}]},
-  {id:6,name:'مشغل الياسمين',emoji:'',area:'حي الملك عبدالله، حائل',rating:4.8,reviews:143,tags:['شعر','بشرة'],from:100,hours:'9 ص – 9 م',avail:'متاح اليوم',cats:['hair','skin'],
-   lat:27.5167,lng:41.7287,mapQ:'مشغل+الياسمين+حائل',
-   services:[{name:'قص وسشوار',dur:'45 د',price:140},{name:'صبغة كاملة',dur:'85 د',price:260},{name:'بوتوكس شعر',dur:'90 د',price:380}]}
+  {id:1,name:'ريشة',area:'حي الوسيطاء، حائل',rating:4.9,reviews:214,tags:['شعر','بشرة','سبا'],from:80,hours:'10 ص – 11 م',avail:'متاح اليوم',cats:['hair','skin','spa'],
+   lat:27.5219,lng:41.6924,mapQ:'ريشة+سالون+الوسيطاء+حائل',
+   services:[{name:'قص وسشوار',dur:'45 د',price:120},{name:'صبغة شعر',dur:'90 د',price:250},{name:'كيراتين',dur:'120 د',price:400},{name:'عناية بالبشرة',dur:'60 د',price:180},{name:'سبا استرخاء',dur:'75 د',price:260}]},
+  {id:2,name:'ايفوريا نيل سبا',area:'حي النقرة، شارع الأمير سعود',rating:4.8,reviews:176,tags:['أظافر','مانيكير','بيدكير'],from:70,hours:'10 ص – 10 م',avail:'متاح اليوم',cats:['nails'],
+   lat:27.5114,lng:41.7208,mapQ:'ايفوريا+نيل+سبا+النقرة+حائل',
+   services:[{name:'مانيكير',dur:'40 د',price:70},{name:'بيدكير',dur:'45 د',price:80},{name:'مانيكير وبيدكير',dur:'80 د',price:130},{name:'جل نيلز',dur:'60 د',price:110},{name:'رشن مانيكير',dur:'75 د',price:150}]},
+  {id:3,name:'جولدن سوان سبا',area:'حي النقرة، حائل',rating:4.7,reviews:98,tags:['سبا','حناء','بشرة'],from:90,hours:'10 ص – 10 م',avail:'',cats:['spa','skin'],
+   lat:27.5080,lng:41.7190,mapQ:'جولدن+سوان+سبا+النقرة+حائل',
+   services:[{name:'سبا استرخاء',dur:'75 د',price:200},{name:'حناء عرائس',dur:'90 د',price:280},{name:'جلسة بشرة عميقة',dur:'60 د',price:180},{name:'مكياج عرائس',dur:'90 د',price:420}]},
+  {id:4,name:'راما سبا',area:'حي النقرة، حائل',rating:4.7,reviews:112,tags:['شعر','بشرة','أظافر'],from:80,hours:'10 ص – 10 م',avail:'متاح اليوم',cats:['hair','skin','nails'],
+   lat:27.5098,lng:41.7220,mapQ:'راما+سبا+النقرة+حائل',
+   services:[{name:'قص وسشوار',dur:'45 د',price:110},{name:'صبغة كاملة',dur:'85 د',price:240},{name:'مانيكير وبيدكير',dur:'80 د',price:120},{name:'عناية بالبشرة',dur:'60 د',price:170}]},
+  {id:5,name:'بلوم للتجميل',area:'حي الجامعيين، حائل',rating:4.6,reviews:64,tags:['حواجب','مكياج','شعر'],from:60,hours:'10 ص – 9 م',avail:'',cats:['brows','makeup','hair'],
+   lat:27.5298,lng:41.7040,mapQ:'مشغل+بلوم+الجامعيين+حائل',
+   services:[{name:'تصميم الحواجب',dur:'30 د',price:60},{name:'مكياج سهرة',dur:'60 د',price:180},{name:'قص وسشوار',dur:'45 د',price:100},{name:'صبغة حواجب',dur:'20 د',price:40}]}
 ];
 
 let filteredSalons=[...salons];
@@ -803,14 +800,14 @@ function renderSalons(){
       </div>
       <div class="salon-body">
         <div class="salon-top">
-          <div class="salon-name">${s.emoji} ${s.name}</div>
-          <div class="salon-rating"><span>⭐</span> ${s.rating} (${s.reviews})</div>
+          <div class="salon-name">${s.name}</div>
+          <div class="salon-rating">★ ${s.rating} (${s.reviews})</div>
         </div>
         <div class="salon-loc"> ${s.area}</div>
         ${s.avail?`<div class="salon-avail">متاح اليوم</div>`:''}
         <div class="salon-tags">${s.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
         <div class="salon-bottom">
-          <div class="salon-price">تبدأ من <b>${s.from} ريال</b> · ⏰ ${s.hours}</div>
+          <div class="salon-price">تبدأ من <b>${s.from} ريال</b> · ${s.hours}</div>
           <button class="book-btn" onclick="showBookingModal(salons.find(x=>x.id===${s.id}))">احجز الآن</button>
         </div>
       </div>
@@ -993,6 +990,9 @@ function setLoginTab(t){
   document.getElementById('ltab2').style='flex:1;border-radius:100px;font-size:13px';
 }
 
+;
+  r.readAsDataURL(input.files[0]);
+}
 
 function showRegisterModal(){document.getElementById('registerOverlay').classList.add('open');}
 function doRegister(){closeModal('registerOverlay');toast('تم إنشاء حسابك بنجاح!');}
