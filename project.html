@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>لمسة — احجزي موعدك</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --brand:#1a1a2e;
+  --accent:#7c3aed;
+  --accent2:#a855f7;
+  --surface:#faf9f8;
+  --white:#ffffff;
+  --text1:#0f0f1a;
+  --text2:#4b5563;
+  --text3:#9ca3af;
+  --border:#e5e7eb;
+  --r:14px;
+  --rs:8px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Tajawal',sans-serif;background:var(--surface);color:var(--text1);direction:rtl}
+
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);height:64px;display:flex;align-items:center;padding:0 2rem;gap:1rem}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--brand);letter-spacing:.5px;margin-left:auto}
+.nav-logo b{color:var(--accent);font-style:italic}
+.nav-links{display:flex;align-items:center;gap:.25rem}
+.nav-link{padding:.45rem 1rem;border-radius:100px;font-size:14px;color:var(--text2);cursor:pointer;transition:.15s;white-space:nowrap;border:none;background:none;font-family:'Tajawal',sans-serif}
+.nav-link:hover{background:#f3f4f6;color:var(--text1)}
+.nav-btn{background:var(--accent);color:#fff;padding:.5rem 1.4rem;border-radius:100px;font-size:14px;font-weight:500;cursor:pointer;border:none;font-family:'Tajawal',sans-serif;transition:.15s;white-space:nowrap}
+.nav-btn:hover{background:#6d28d9}
+.menu-toggle{display:none;background:none;border:1px solid var(--border);border-radius:var(--rs);padding:6px 10px;cursor:pointer;font-size:18px;color:var(--text2)}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding-top:64px}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-img-wrap{position:absolute;inset:0;z-index:1}
+.hero-img-wrap img{width:100%;height:100%;object-fit:cover;opacity:.18}
+.hero-img-wrap video{width:100%;height:100%;object-fit:cover;opacity:.18}
+.hero-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(160deg,rgba(255,255,255,.96) 0%,rgba(255,255,255,.82) 50%,rgba(250,249,248,.6) 100%)}
+.hero-content{position:relative;z-index:3;max-width:680px;text-align:center;padding:0 1.5rem}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;background:#f3e8ff;color:var(--accent);border-radius:100px;padding:6px 16px;font-size:13px;font-weight:500;margin-bottom:1.5rem;border:1px solid #e9d5ff}
+.hero-tag span{width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block}
+.hero-h1{font-size:clamp(2.4rem,6vw,3.8rem);font-weight:800;line-height:1.15;color:var(--brand);margin-bottom:1.25rem}
+.hero-h1 em{font-family:'Playfair Display',serif;font-style:italic;color:var(--accent)}
+.hero-sub{font-size:1.1rem;color:var(--text2);line-height:1.7;margin-bottom:2.5rem;font-weight:400}
+.hero-search{background:var(--white);border-radius:100px;padding:.45rem .45rem .45rem 1.5rem;display:flex;align-items:center;gap:.5rem;box-shadow:0 2px 24px rgba(0,0,0,.1);border:1.5px solid var(--border);max-width:520px;margin:0 auto 1.5rem}
+.hero-search input{flex:1;border:none;outline:none;font-family:'Tajawal',sans-serif;font-size:15px;background:transparent;color:var(--text1);min-width:0}
+.hero-search input::placeholder{color:var(--text3)}
+.hero-search-btn{background:var(--accent);color:#fff;border:none;border-radius:100px;padding:.65rem 1.6rem;font-size:14px;font-weight:500;cursor:pointer;font-family:'Tajawal',sans-serif;white-space:nowrap;transition:.15s}
+.hero-search-btn:hover{background:#6d28d9}
+.hero-stats{display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap}
+.hero-stat{text-align:center}
+.hero-stat-n{font-size:1.5rem;font-weight:700;color:var(--brand)}
+.hero-stat-l{font-size:12px;color:var(--text3)}
+/* Upload hint */
+.upload-hint{font-size:12px;color:var(--text3);margin-top:.75rem}
+.upload-zone{border:1.5px dashed var(--border);border-radius:var(--r);padding:1.25rem;text-align:center;cursor:pointer;transition:.15s;display:none;max-width:340px;margin:0 auto}
+.upload-zone:hover{border-color:var(--accent);background:#faf5ff}
+.upload-zone.show{display:block}
+.hero-uploaded-img{width:100%;max-height:220px;object-fit:cover;border-radius:var(--r);display:none;margin:0 auto 1rem;max-width:480px}
+
+/* ── CATEGORIES ── */
+.section{padding:4rem 2rem}
+.section-center{text-align:center;margin-bottom:2.5rem}
+.section-title{font-size:1.6rem;font-weight:700;color:var(--brand);margin-bottom:.4rem}
+.section-sub{font-size:15px;color:var(--text2)}
+.cats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:.75rem;max-width:860px;margin:0 auto}
+.cat-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);padding:1.25rem .75rem;text-align:center;cursor:pointer;transition:.2s;display:flex;flex-direction:column;align-items:center;gap:.5rem}
+.cat-card:hover,.cat-card.active{border-color:var(--accent);background:#faf5ff;transform:translateY(-2px)}
+.cat-icon{font-size:1.8rem;line-height:1}
+.cat-label{font-size:13px;color:var(--text2);font-weight:500}
+
+/* ── SALON CARDS ── */
+.salons-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem;max-width:1100px;margin:0 auto}
+.salon-card{background:var(--white);border:1.5px solid var(--border);border-radius:18px;overflow:hidden;cursor:pointer;transition:.2s;display:flex;flex-direction:column}
+.salon-card:hover{border-color:var(--accent);box-shadow:0 8px 32px rgba(124,58,237,.1);transform:translateY(-3px)}
+.salon-map{height:160px;position:relative;overflow:hidden;background:#f0f0f0;flex-shrink:0}
+.salon-map iframe{width:100%;height:100%;border:none;pointer-events:none;transition:.2s}
+.salon-card:hover .salon-map iframe{pointer-events:auto}
+.salon-map-expand{position:absolute;bottom:.5rem;left:.5rem;background:var(--white);border:1px solid var(--border);border-radius:var(--rs);padding:4px 10px;font-size:12px;color:var(--text2);cursor:pointer;display:flex;align-items:center;gap:4px;z-index:5;text-decoration:none;font-family:'Tajawal',sans-serif;transition:.15s}
+.salon-map-expand:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.salon-body{padding:1.1rem;flex:1;display:flex;flex-direction:column}
+.salon-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.5rem}
+.salon-name{font-size:1.05rem;font-weight:700;color:var(--brand);line-height:1.3}
+.salon-rating{display:flex;align-items:center;gap:3px;font-size:13px;font-weight:500;color:#1a1a1a;background:#fef9c3;padding:3px 8px;border-radius:100px;border:1px solid #fde68a;white-space:nowrap}
+.salon-rating span{color:#ca8a04}
+.salon-loc{font-size:13px;color:var(--text3);margin-bottom:.75rem;display:flex;align-items:center;gap:4px}
+.salon-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:.85rem}
+.tag{background:#f3f4f6;color:var(--text2);font-size:11px;padding:3px 9px;border-radius:100px;font-weight:500}
+.salon-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:auto}
+.salon-price{font-size:13px;color:var(--text2)}
+.salon-price b{color:var(--text1);font-size:14px}
+.book-btn{background:var(--accent);color:#fff;border:none;border-radius:100px;padding:.5rem 1.25rem;font-size:13px;font-weight:500;cursor:pointer;font-family:'Tajawal',sans-serif;transition:.15s}
+.book-btn:hover{background:#6d28d9}
+.salon-avail{font-size:11px;color:#16a34a;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:100px;padding:2px 8px;margin-bottom:.85rem;display:inline-block}
+
+/* ── BOOKING MODAL ── */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:300;align-items:flex-end;justify-content:center;padding:0}
+.overlay.open{display:flex}
+@media(min-width:640px){.overlay{align-items:center;padding:1rem}}
+.bmodal{background:var(--white);border-radius:22px 22px 0 0;width:100%;max-width:560px;max-height:92vh;overflow-y:auto;display:flex;flex-direction:column;animation:slideUp .3s cubic-bezier(.16,1,.3,1)}
+@media(min-width:640px){.bmodal{border-radius:22px;animation:fadeScale .25s ease}}
+@keyframes slideUp{from{transform:translateY(60px);opacity:0}to{transform:none;opacity:1}}
+@keyframes fadeScale{from{transform:scale(.96);opacity:0}to{transform:none;opacity:1}}
+.bmodal-handle{width:40px;height:4px;background:#e5e7eb;border-radius:2px;margin:12px auto 0;display:block}
+@media(min-width:640px){.bmodal-handle{display:none}}
+.bmodal-head{padding:1.25rem 1.5rem 0;display:flex;align-items:center;justify-content:space-between}
+.bmodal-title{font-size:1.2rem;font-weight:700;color:var(--brand)}
+.bmodal-close{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--border);background:none;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text2);transition:.15s}
+.bmodal-close:hover{background:#f3f4f6}
+.bmodal-body{padding:1.25rem 1.5rem 1.5rem;display:flex;flex-direction:column;gap:1.25rem}
+.bmodal-map{height:180px;border-radius:var(--r);overflow:hidden;border:1.5px solid var(--border)}
+.bmodal-map iframe{width:100%;height:100%;border:none}
+.bmodal-map-link{display:block;text-align:center;font-size:12px;color:var(--accent);margin-top:.4rem;text-decoration:none}
+.bmodal-map-link:hover{text-decoration:underline}
+.bm-label{font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.5rem}
+.services-list{display:flex;flex-direction:column;gap:.4rem}
+.svc-item{display:flex;align-items:center;justify-content:space-between;padding:.6rem .85rem;border:1.5px solid var(--border);border-radius:var(--rs);cursor:pointer;transition:.15s;font-size:14px;color:var(--text1)}
+.svc-item:hover,.svc-item.sel{border-color:var(--accent);background:#faf5ff}
+.svc-item.sel{color:var(--accent)}
+.svc-meta{font-size:12px;color:var(--text3);margin-top:1px}
+.svc-price{font-weight:700;color:var(--brand);white-space:nowrap}
+.staff-row{display:flex;gap:.5rem;flex-wrap:wrap}
+.staff-chip{display:flex;flex-direction:column;align-items:center;gap:3px;padding:.6rem .75rem;border:1.5px solid var(--border);border-radius:var(--rs);cursor:pointer;transition:.15s;flex:1;min-width:70px;text-align:center}
+.staff-chip:hover,.staff-chip.sel{border-color:var(--accent);background:#faf5ff}
+.staff-av{width:36px;height:36px;border-radius:50%;background:#ede9fe;color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700}
+.staff-nm{font-size:12px;color:var(--text2);font-weight:500}
+.staff-role{font-size:10px;color:var(--text3)}
+/* Calendar */
+.cal-nav-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem}
+.cal-nav-btn{width:32px;height:32px;border-radius:50%;border:1.5px solid var(--border);background:none;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s}
+.cal-nav-btn:hover{background:#f3f4f6}
+.cal-month{font-size:14px;font-weight:600;color:var(--text1)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.cal-dn{text-align:center;font-size:11px;color:var(--text3);padding:4px 0}
+.cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:13px;border-radius:50%;cursor:pointer;transition:.15s;color:var(--text2);border:1.5px solid transparent}
+.cal-day:hover:not(.empty):not(.disabled){background:#f3f4f6}
+.cal-day.today{background:#faf5ff;color:var(--accent);font-weight:600}
+.cal-day.sel{background:var(--accent);color:#fff;font-weight:600}
+.cal-day.disabled{color:#d1d5db;cursor:not-allowed}
+.cal-day.empty{cursor:default}
+/* Slots */
+.slots-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.4rem}
+.time-slot{padding:.5rem;text-align:center;font-size:13px;border:1.5px solid var(--border);border-radius:var(--rs);cursor:pointer;transition:.15s;color:var(--text2)}
+.time-slot:hover{border-color:var(--accent);color:var(--accent)}
+.time-slot.sel{background:var(--accent);color:#fff;border-color:var(--accent)}
+.time-slot.gone{background:#f9fafb;color:#d1d5db;cursor:not-allowed;border-style:dashed}
+/* Summary bar */
+.sum-bar{background:#faf5ff;border:1.5px solid #e9d5ff;border-radius:var(--r);padding:.85rem 1rem;display:flex;gap:.75rem;align-items:center;flex-wrap:wrap}
+.sum-item{display:flex;flex-direction:column;gap:1px;flex:1;min-width:80px}
+.sum-k{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.3px}
+.sum-v{font-size:13px;font-weight:600;color:var(--brand)}
+/* Payment */
+.pay-opts{display:flex;flex-direction:column;gap:.4rem}
+.pay-opt{display:flex;align-items:center;gap:.65rem;padding:.65rem .85rem;border:1.5px solid var(--border);border-radius:var(--rs);cursor:pointer;font-size:14px;transition:.15s}
+.pay-opt:hover,.pay-opt.sel{border-color:var(--accent);background:#faf5ff}
+.pay-opt input{accent-color:var(--accent);width:16px;height:16px}
+.confirm-btn{background:var(--accent);color:#fff;border:none;border-radius:100px;padding:.85rem;font-size:15px;font-weight:600;cursor:pointer;font-family:'Tajawal',sans-serif;width:100%;transition:.15s;letter-spacing:.3px}
+.confirm-btn:hover{background:#6d28d9}
+.confirm-btn:disabled{background:#d1d5db;cursor:not-allowed}
+
+/* ── MAP MODAL ── */
+.map-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:400;align-items:center;justify-content:center;padding:1rem}
+.map-overlay.open{display:flex}
+.map-modal{background:var(--white);border-radius:18px;width:100%;max-width:680px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.map-modal-head{padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+.map-full{height:420px;width:100%}
+.map-full iframe{width:100%;height:100%;border:none}
+.map-modal-foot{padding:1rem 1.25rem;display:flex;gap:.75rem;justify-content:flex-end;align-items:center;border-top:1px solid var(--border)}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(100px);background:#1a1a2e;color:#fff;padding:.75rem 1.5rem;border-radius:100px;font-size:14px;z-index:999;transition:.3s;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,.2)}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* ── STEP PROGRESS ── */
+.steps{display:flex;gap:0;border-bottom:1.5px solid var(--border);margin-bottom:1.25rem}
+.step-dot{flex:1;padding:.6rem 0;text-align:center;font-size:12px;color:var(--text3);position:relative;cursor:default}
+.step-dot.active{color:var(--accent);font-weight:600}
+.step-dot.done{color:#16a34a}
+.step-dot::after{content:'';position:absolute;bottom:-1.5px;left:0;right:0;height:2px;background:transparent}
+.step-dot.active::after{background:var(--accent)}
+.step-dot.done::after{background:#16a34a}
+
+/* ── OWNER PANEL ── */
+.panel-grid{display:grid;grid-template-columns:240px 1fr;min-height:calc(100vh - 64px)}
+.panel-sidebar{background:var(--white);border-left:1px solid var(--border);padding:1.5rem 0;position:sticky;top:64px;height:calc(100vh - 64px);overflow-y:auto}
+.panel-nav-item{display:flex;align-items:center;gap:.6rem;padding:.6rem 1.25rem;font-size:14px;color:var(--text2);cursor:pointer;transition:.15s;border-right:3px solid transparent}
+.panel-nav-item:hover{background:#faf5ff;color:var(--accent)}
+.panel-nav-item.active{color:var(--accent);font-weight:500;border-right-color:var(--accent);background:#faf5ff}
+.panel-nav-icon{font-size:17px}
+.panel-main{padding:2rem;background:var(--surface)}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin-bottom:1.5rem}
+.stat-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);padding:1rem 1.25rem}
+.stat-k{font-size:12px;color:var(--text3);margin-bottom:4px}
+.stat-v{font-size:1.6rem;font-weight:700;color:var(--brand);line-height:1}
+.stat-d{font-size:11px;color:#16a34a;margin-top:3px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:right;padding:.65rem 1rem;font-size:11px;font-weight:600;color:var(--text3);border-bottom:1px solid var(--border);background:#fafafa;text-transform:uppercase;letter-spacing:.4px}
+td{padding:.8rem 1rem;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:middle}
+tr:hover td{background:#faf9f8}
+.badge{display:inline-flex;align-items:center;padding:2px 9px;border-radius:100px;font-size:11px;font-weight:500}
+.badge-green{background:#f0fdf4;color:#16a34a;border:1px solid #bbf7d0}
+.badge-yellow{background:#fefce8;color:#ca8a04;border:1px solid #fde68a}
+.badge-red{background:#fef2f2;color:#dc2626;border:1px solid #fecaca}
+.badge-purple{background:#faf5ff;color:var(--accent);border:1px solid #e9d5ff}
+.inp{border:1.5px solid var(--border);border-radius:var(--rs);padding:.6rem .85rem;font-family:'Tajawal',sans-serif;font-size:14px;color:var(--text1);outline:none;width:100%;background:#fff;transition:.15s}
+.inp:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,58,237,.08)}
+.btn-primary{background:var(--accent);color:#fff;border:none;border-radius:100px;padding:.6rem 1.4rem;font-size:14px;font-weight:500;cursor:pointer;font-family:'Tajawal',sans-serif;transition:.15s}
+.btn-primary:hover{background:#6d28d9}
+.btn-ghost{background:#fff;color:var(--text2);border:1.5px solid var(--border);border-radius:100px;padding:.6rem 1.4rem;font-size:14px;cursor:pointer;font-family:'Tajawal',sans-serif;transition:.15s}
+.btn-ghost:hover{background:#f3f4f6}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.form-group{display:flex;flex-direction:column;gap:5px}
+.form-group.full{grid-column:1/-1}
+.form-label{font-size:12px;font-weight:500;color:var(--text2)}
+
+/* ── MISC ── */
+.card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);padding:1.25rem}
+.flex-between{display:flex;justify-content:space-between;align-items:center}
+.gap-sm{display:flex;flex-direction:column;gap:.5rem}
+.mt1{margin-top:1rem}
+.divider{height:1px;background:var(--border);margin:.75rem 0}
+label{display:block}
+input[type=text],input[type=email],input[type=password],input[type=tel],select,textarea{font-family:'Tajawal',sans-serif;font-size:14px;border:1.5px solid var(--border);border-radius:var(--rs);padding:.6rem .85rem;color:var(--text1);background:#fff;outline:none;transition:border-color .15s;direction:rtl;width:100%}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,58,237,.08)}
+textarea{resize:vertical;min-height:70px}
+
+@media(max-width:768px){
+  .panel-grid{grid-template-columns:1fr}
+  .panel-sidebar{display:none;position:fixed;top:64px;right:0;width:240px;z-index:150;height:100vh;box-shadow:-4px 0 20px rgba(0,0,0,.1)}
+  .panel-sidebar.open{display:flex;flex-direction:column}
+  .form-row{grid-template-columns:1fr}
+  .menu-toggle{display:flex}
+  .nav-links .nav-link{display:none}
+  .slots-grid{grid-template-columns:repeat(3,1fr)}
+  .salons-grid{grid-template-columns:1fr}
+  .cats-grid{grid-template-columns:repeat(4,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="nav" id="mainNav">
+  <button class="menu-toggle" onclick="toggleMobileMenu()" id="menuToggle">☰</button>
+  <div class="nav-links" id="navLinks">
+    <button class="nav-link" onclick="showView('home')">اكتشفي</button>
+    <button class="nav-link" onclick="showView('ownerPanel');loginAs('owner')">لوحة التحكم</button>
+  </div>
+  <div class="nav-logo">لمـسة <b>✦</b></div>
+  <div style="display:flex;align-items:center;gap:.5rem;margin-right:auto">
+    <button class="nav-link" id="loginNavBtn" onclick="showLoginModal()">دخول</button>
+    <button class="nav-btn" onclick="showLoginModal()">ابدئي الآن</button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════
+     HOME VIEW
+══════════════════════════════════ -->
+<div id="view-home">
+
+<!-- HERO -->
+<section class="hero" id="heroSection">
+  <div class="hero-bg"></div>
+  <div class="hero-img-wrap" id="heroImgWrap">
+    <img id="heroImg" src="" alt="" style="display:none">
+    <!-- fallback SVG bg -->
+    <svg id="heroBgSvg" width="100%" height="100%" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" style="opacity:.12">
+      <defs><pattern id="p" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1.5" fill="#7c3aed"/></pattern></defs>
+      <rect width="100%" height="100%" fill="url(#p)"/>
+      <circle cx="200" cy="150" r="180" fill="#a855f7" opacity=".15"/>
+      <circle cx="1000" cy="500" r="220" fill="#7c3aed" opacity=".12"/>
+      <circle cx="600" cy="350" r="280" fill="#c084fc" opacity=".08"/>
+    </svg>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-tag"><span></span> منصة الحجز الأولى للمشاغل النسائية</div>
+    <h1 class="hero-h1" id="heroHeadline">احجزي لحظتك <em>الخاصة</em><br>في أفضل مشاغل الرياض</h1>
+    <p class="hero-sub" id="heroTagline">اكتشفي آلاف المشاغل المعتمدة، احجزي في ثوانٍ، واستمتعي بتجربة لا تُنسى — كل ذلك في مكان واحد</p>
+    <div class="hero-search">
+      <input type="text" placeholder="ابحثي: صبغة، كيراتين، مانيكير..." id="heroSearch" oninput="filterSalons(this.value)">
+      <button class="hero-search-btn" onclick="filterSalons(document.getElementById('heroSearch').value)">بحث</button>
+    </div>
+    <img id="heroUploadedImg" class="hero-uploaded-img" alt="صورة مميزة">
+    <div class="upload-hint">هل تريدين إضافة صورة مميزة لصفحتك؟ <span style="color:var(--accent);cursor:pointer" onclick="document.getElementById('upload-zone').classList.toggle('show')">ارفعي صورة</span></div>
+    <div class="upload-zone" id="upload-zone">
+      <div style="font-size:1.8rem;margin-bottom:.4rem">🖼</div>
+      <div style="font-size:13px;color:var(--text2);margin-bottom:.6rem">اسحبي الصورة هنا أو انقري للاختيار</div>
+      <input type="file" accept="image/*" id="heroFileInput" style="display:none" onchange="handleHeroUpload(this)">
+      <button onclick="document.getElementById('heroFileInput').click()" style="background:var(--accent);color:#fff;border:none;border-radius:100px;padding:.45rem 1.1rem;font-size:13px;cursor:pointer;font-family:'Tajawal',sans-serif">اختيار صورة</button>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-n">47+</div><div class="hero-stat-l">مشغل معتمد</div></div>
+      <div class="hero-stat"><div class="hero-stat-n">8,420</div><div class="hero-stat-l">عميلة راضية</div></div>
+      <div class="hero-stat"><div class="hero-stat-n">4.9 ★</div><div class="hero-stat-l">متوسط التقييم</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="section" style="background:var(--white);padding:2.5rem 2rem">
+  <div class="section-center">
+    <div class="section-title">اكتشفي الخدمات</div>
+    <div class="section-sub">اختاري الخدمة التي تبحثين عنها</div>
+  </div>
+  <div class="cats-grid">
+    <div class="cat-card active" onclick="filterByCategory('all',this)"><div class="cat-icon">✨</div><div class="cat-label">الكل</div></div>
+    <div class="cat-card" onclick="filterByCategory('hair',this)"><div class="cat-icon">💇‍♀️</div><div class="cat-label">الشعر</div></div>
+    <div class="cat-card" onclick="filterByCategory('skin',this)"><div class="cat-icon">🧖‍♀️</div><div class="cat-label">البشرة</div></div>
+    <div class="cat-card" onclick="filterByCategory('nails',this)"><div class="cat-icon">💅</div><div class="cat-label">الأظافر</div></div>
+    <div class="cat-card" onclick="filterByCategory('brows',this)"><div class="cat-icon">🪮</div><div class="cat-label">الحواجب</div></div>
+    <div class="cat-card" onclick="filterByCategory('makeup',this)"><div class="cat-icon">💄</div><div class="cat-label">المكياج</div></div>
+    <div class="cat-card" onclick="filterByCategory('spa',this)"><div class="cat-icon">🌸</div><div class="cat-label">السبا</div></div>
+  </div>
+</section>
+
+<!-- SALONS SECTION -->
+<section class="section" id="salonsSection">
+  <div class="section-center">
+    <div class="section-title">المشاغل المتاحة</div>
+    <div class="section-sub" id="salonCount">47 مشغل في الرياض</div>
+  </div>
+  <div class="salons-grid" id="salonsGrid"></div>
+</section>
+
+</div><!-- /view-home -->
+
+<!-- ══════════════════════════════════
+     OWNER PANEL VIEW
+══════════════════════════════════ -->
+<div id="view-ownerPanel" style="display:none;padding-top:64px">
+  <div class="panel-grid">
+    <div class="panel-sidebar" id="panelSidebar">
+      <div style="padding:1rem 1.25rem .5rem;font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px">لوحة التحكم</div>
+      <div class="panel-nav-item active" onclick="showPanelPage('pDash',this)"><span class="panel-nav-icon">📊</span> الإحصائيات</div>
+      <div class="panel-nav-item" onclick="showPanelPage('pBookings',this)"><span class="panel-nav-icon">📅</span> الحجوزات</div>
+      <div class="panel-nav-item" onclick="showPanelPage('pStaff',this)"><span class="panel-nav-icon">👥</span> الموظفات</div>
+      <div class="panel-nav-item" onclick="showPanelPage('pServices',this)"><span class="panel-nav-icon">✂️</span> الخدمات</div>
+      <div class="panel-nav-item" onclick="showPanelPage('pSettings',this)"><span class="panel-nav-icon">⚙️</span> الإعدادات</div>
+      <div style="margin-top:auto;padding:1rem 1.25rem;border-top:1px solid var(--border)">
+        <button class="btn-ghost" style="width:100%;justify-content:center" onclick="showView('home')">← العودة للموقع</button>
+      </div>
+    </div>
+    <div class="panel-main" id="panelMain">
+
+      <!-- DASH -->
+      <div id="pDash">
+        <div class="flex-between" style="margin-bottom:1.5rem">
+          <div>
+            <div style="font-size:1.3rem;font-weight:700;color:var(--brand)">أهلاً، مشغل الورد 🌸</div>
+            <div style="font-size:13px;color:var(--text3);margin-top:2px">الأحد، 25 مايو 2025</div>
+          </div>
+          <button class="btn-primary" onclick="showBookingModal(salons[0])">+ حجز يدوي</button>
+        </div>
+        <div class="stat-grid">
+          <div class="stat-card"><div class="stat-k">حجوزات اليوم</div><div class="stat-v">14</div><div class="stat-d">↑ +3 من أمس</div></div>
+          <div class="stat-card"><div class="stat-k">إيرادات الشهر</div><div class="stat-v" style="font-size:1.3rem">18,420 ر</div><div class="stat-d">↑ 12%</div></div>
+          <div class="stat-card"><div class="stat-k">عدد العميلات</div><div class="stat-v">342</div><div class="stat-d">↑ 12 جديدة</div></div>
+          <div class="stat-card"><div class="stat-k">معدل الإلغاء</div><div class="stat-v">4.2%</div><div class="stat-d" style="color:#16a34a">↓ ممتاز</div></div>
+        </div>
+        <div class="card">
+          <div class="flex-between" style="margin-bottom:1rem"><b style="font-size:15px">حجوزات اليوم</b></div>
+          <div style="overflow-x:auto"><table>
+            <thead><tr><th>العميلة</th><th>الخدمة</th><th>الموظفة</th><th>الوقت</th><th>الحالة</th><th>الإجراء</th></tr></thead>
+            <tbody>
+              <tr><td>سارة أحمد</td><td>قص وسشوار</td><td>نورة</td><td>9:30 ص</td><td><span class="badge badge-green">مكتمل</span></td><td><button class="btn-ghost" style="padding:.3rem .8rem;font-size:12px" onclick="toast('تفاصيل الحجز')">تفاصيل</button></td></tr>
+              <tr><td>منى خالد</td><td>صبغة كاملة</td><td>سلمى</td><td>11:00 ص</td><td><span class="badge badge-purple">مؤكد</span></td><td><button class="btn-ghost" style="padding:.3rem .8rem;font-size:12px" onclick="toast('تم التأكيد ✓')">تأكيد</button></td></tr>
+              <tr><td>هند ناصر</td><td>عناية بشرة</td><td>ليلى</td><td>1:00 م</td><td><span class="badge badge-yellow">انتظار</span></td><td><button class="btn-primary" style="padding:.3rem .8rem;font-size:12px;border-radius:100px" onclick="toast('تم التأكيد ✓')">قبول</button></td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </div>
+
+      <!-- BOOKINGS -->
+      <div id="pBookings" style="display:none">
+        <div class="flex-between" style="margin-bottom:1.5rem">
+          <div style="font-size:1.3rem;font-weight:700;color:var(--brand)">إدارة الحجوزات</div>
+          <button class="btn-primary" onclick="showBookingModal(salons[0])">+ إضافة حجز</button>
+        </div>
+        <div style="display:flex;gap:.75rem;margin-bottom:1rem;flex-wrap:wrap">
+          <input type="text" placeholder="بحث..." style="max-width:200px">
+          <input type="date" style="max-width:160px">
+          <select style="max-width:140px"><option>كل الموظفات</option><option>نورة</option><option>سلمى</option><option>ليلى</option></select>
+        </div>
+        <div class="card"><div style="overflow-x:auto"><table>
+          <thead><tr><th>#</th><th>العميلة</th><th>الخدمة</th><th>الموظفة</th><th>التاريخ</th><th>الوقت</th><th>السعر</th><th>الحالة</th><th>إجراء</th></tr></thead>
+          <tbody>
+            <tr><td style="color:var(--text3)">#1024</td><td>سارة أحمد</td><td>قص وسشوار</td><td>نورة</td><td>25/05</td><td>9:30 ص</td><td>150 ر</td><td><span class="badge badge-green">مكتمل</span></td><td><button class="btn-ghost" style="padding:.3rem .7rem;font-size:12px" onclick="toast('تفاصيل #1024')">تفاصيل</button></td></tr>
+            <tr><td style="color:var(--text3)">#1025</td><td>منى خالد</td><td>صبغة</td><td>سلمى</td><td>25/05</td><td>11:00 ص</td><td>280 ر</td><td><span class="badge badge-purple">مؤكد</span></td><td><button class="btn-ghost" style="padding:.3rem .7rem;font-size:12px" onclick="toast('تم الإلغاء')">إلغاء</button></td></tr>
+            <tr><td style="color:var(--text3)">#1026</td><td>هند ناصر</td><td>بشرة</td><td>ليلى</td><td>26/05</td><td>1:00 م</td><td>200 ر</td><td><span class="badge badge-yellow">انتظار</span></td><td><button class="btn-primary" style="padding:.3rem .7rem;font-size:12px;border-radius:100px" onclick="toast('تم التأكيد ✓')">تأكيد</button></td></tr>
+          </tbody>
+        </table></div></div>
+      </div>
+
+      <!-- STAFF -->
+      <div id="pStaff" style="display:none">
+        <div class="flex-between" style="margin-bottom:1.5rem">
+          <div style="font-size:1.3rem;font-weight:700;color:var(--brand)">إدارة الموظفات</div>
+          <button class="btn-primary" onclick="toast('فتح نموذج إضافة موظفة')">+ إضافة</button>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem">
+          <div class="card">
+            <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem">
+              <div class="staff-av" style="width:44px;height:44px;font-size:16px">نو</div>
+              <div><div style="font-weight:600;color:var(--brand)">نورة السالم</div><div style="font-size:12px;color:var(--text3)">أخصائية شعر · ⭐ 4.9</div></div>
+              <span class="badge badge-green" style="margin-right:auto">نشطة</span>
+            </div>
+            <div style="font-size:12px;color:var(--text2);margin-bottom:.75rem">الأحد – الخميس · 9 ص – 6 م</div>
+            <div style="display:flex;gap:.4rem"><button class="btn-ghost" style="padding:.35rem .8rem;font-size:12px" onclick="toast('تعديل نورة')">تعديل</button><button class="btn-ghost" style="padding:.35rem .8rem;font-size:12px" onclick="toast('جدول نورة')">الجدول</button></div>
+          </div>
+          <div class="card">
+            <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem">
+              <div class="staff-av" style="width:44px;height:44px;font-size:16px">سا</div>
+              <div><div style="font-weight:600;color:var(--brand)">سلمى العمر</div><div style="font-size:12px;color:var(--text3)">أخصائية بشرة · ⭐ 4.8</div></div>
+              <span class="badge badge-green" style="margin-right:auto">نشطة</span>
+            </div>
+            <div style="font-size:12px;color:var(--text2);margin-bottom:.75rem">الأحد – الأربعاء · 10 ص – 7 م</div>
+            <div style="display:flex;gap:.4rem"><button class="btn-ghost" style="padding:.35rem .8rem;font-size:12px" onclick="toast('تعديل سلمى')">تعديل</button><button class="btn-ghost" style="padding:.35rem .8rem;font-size:12px" onclick="toast('جدول سلمى')">الجدول</button></div>
+          </div>
+          <div class="card">
+            <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem">
+              <div class="staff-av" style="width:44px;height:44px;font-size:16px">لي</div>
+              <div><div style="font-weight:600;color:var(--brand)">ليلى الحربي</div><div style="font-size:12px;color:var(--text3)">أخصائية أظافر · ⭐ 4.7</div></div>
+              <span class="badge badge-yellow" style="margin-right:auto">إجازة</span>
+            </div>
+            <div style="font-size:12px;color:var(--text2);margin-bottom:.75rem">الإثنين – الجمعة · 11 ص – 8 م</div>
+            <div style="display:flex;gap:.4rem"><button class="btn-ghost" style="padding:.35rem .8rem;font-size:12px" onclick="toast('تعديل ليلى')">تعديل</button><button class="btn-primary" style="padding:.35rem .8rem;font-size:12px;border-radius:100px" onclick="toast('تم التفعيل ✓')">تفعيل</button></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SERVICES -->
+      <div id="pServices" style="display:none">
+        <div class="flex-between" style="margin-bottom:1.5rem">
+          <div style="font-size:1.3rem;font-weight:700;color:var(--brand)">إدارة الخدمات</div>
+          <button class="btn-primary" onclick="toast('فتح نموذج إضافة خدمة')">+ إضافة خدمة</button>
+        </div>
+        <div class="card"><div style="overflow-x:auto"><table>
+          <thead><tr><th>الخدمة</th><th>الفئة</th><th>المدة</th><th>السعر</th><th>الحالة</th><th>إجراء</th></tr></thead>
+          <tbody>
+            <tr><td style="font-weight:500">قص وسشوار</td><td>شعر</td><td>45 د</td><td>150 ر</td><td><span class="badge badge-green">نشط</span></td><td><button class="btn-ghost" style="padding:.3rem .7rem;font-size:12px" onclick="toast('تعديل الخدمة')">تعديل</button></td></tr>
+            <tr><td style="font-weight:500">صبغة كاملة</td><td>شعر</td><td>90 د</td><td>280 ر</td><td><span class="badge badge-green">نشط</span></td><td><button class="btn-ghost" style="padding:.3rem .7rem;font-size:12px" onclick="toast('تعديل الخدمة')">تعديل</button></td></tr>
+            <tr><td style="font-weight:500">عناية بشرة</td><td>بشرة</td><td>60 د</td><td>200 ر</td><td><span class="badge badge-green">نشط</span></td><td><button class="btn-ghost" style="padding:.3rem .7rem;font-size:12px" onclick="toast('تعديل الخدمة')">تعديل</button></td></tr>
+            <tr><td style="font-weight:500">مانيكير وبيدكير</td><td>أظافر</td><td>50 د</td><td>120 ر</td><td><span class="badge badge-green">نشط</span></td><td><button class="btn-ghost" style="padding:.3rem .7rem;font-size:12px" onclick="toast('تعديل الخدمة')">تعديل</button></td></tr>
+            <tr><td style="font-weight:500">كيراتين</td><td>شعر</td><td>120 د</td><td>450 ر</td><td><span class="badge badge-yellow">مخفي</span></td><td><button class="btn-primary" style="padding:.3rem .7rem;font-size:12px;border-radius:100px" onclick="toast('تم الإظهار ✓')">إظهار</button></td></tr>
+          </tbody>
+        </table></div></div>
+      </div>
+
+      <!-- SETTINGS -->
+      <div id="pSettings" style="display:none">
+        <div style="font-size:1.3rem;font-weight:700;color:var(--brand);margin-bottom:1.5rem">إعدادات المشغل</div>
+        <div class="card" style="max-width:520px">
+          <div class="form-row">
+            <div class="form-group full"><div class="form-label">اسم المشغل</div><input value="مشغل الورد"></div>
+            <div class="form-group"><div class="form-label">رقم الجوال</div><input value="0501234567"></div>
+            <div class="form-group"><div class="form-label">البريد الإلكتروني</div><input value="info@alward.sa"></div>
+            <div class="form-group full"><div class="form-label">العنوان</div><input value="حي النرجس، الرياض"></div>
+          </div>
+          <div class="divider"></div>
+          <div style="font-size:13px;font-weight:600;color:var(--text2);margin-bottom:.75rem">طرق الدفع</div>
+          <div style="display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem">
+            <label style="display:flex;align-items:center;gap:8px;font-size:14px;font-weight:400;cursor:pointer"><input type="checkbox" checked style="accent-color:var(--accent);width:15px;height:15px"> Apple Pay</label>
+            <label style="display:flex;align-items:center;gap:8px;font-size:14px;font-weight:400;cursor:pointer"><input type="checkbox" checked style="accent-color:var(--accent);width:15px;height:15px"> مدى</label>
+            <label style="display:flex;align-items:center;gap:8px;font-size:14px;font-weight:400;cursor:pointer"><input type="checkbox" checked style="accent-color:var(--accent);width:15px;height:15px"> Visa / Mastercard</label>
+          </div>
+          <button class="btn-primary" onclick="toast('تم حفظ الإعدادات ✓')">حفظ التغييرات</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     BOOKING MODAL
+══════════════════════════════════ -->
+<div class="overlay" id="bookingOverlay" onclick="overlayClick(event,'bookingOverlay')">
+  <div class="bmodal" id="bmodal">
+    <span class="bmodal-handle"></span>
+    <div class="bmodal-head">
+      <div class="bmodal-title" id="bmodal-salonName">احجزي موعدك</div>
+      <button class="bmodal-close" onclick="closeModal('bookingOverlay')">✕</button>
+    </div>
+    <div class="bmodal-body">
+      <!-- Map inside modal -->
+      <div>
+        <div class="bmodal-map" id="bmodal-mapWrap">
+          <iframe id="bmodalMapIframe" src="" loading="lazy" title="موقع المشغل" allowfullscreen></iframe>
+        </div>
+        <a class="bmodal-map-link" id="bmodalMapLink" href="#" target="_blank">📍 عرض الموقع على خرائط جوجل ↗</a>
+      </div>
+      <!-- Steps -->
+      <div class="steps">
+        <div class="step-dot active" id="sdot1">الخدمة</div>
+        <div class="step-dot" id="sdot2">الموظفة</div>
+        <div class="step-dot" id="sdot3">الوقت</div>
+        <div class="step-dot" id="sdot4">الدفع</div>
+      </div>
+
+      <!-- STEP 1: SERVICE -->
+      <div id="bstep1">
+        <div class="bm-label">اختاري الخدمة</div>
+        <div class="services-list" id="servicesList"></div>
+      </div>
+
+      <!-- STEP 2: STAFF -->
+      <div id="bstep2" style="display:none">
+        <div class="bm-label">اختاري الموظفة</div>
+        <div class="staff-row">
+          <div class="staff-chip" onclick="selectStaff(this,'نورة','أخصائية شعر')"><div class="staff-av">نو</div><div class="staff-nm">نورة</div><div class="staff-role">شعر</div></div>
+          <div class="staff-chip" onclick="selectStaff(this,'سلمى','أخصائية بشرة')"><div class="staff-av">سا</div><div class="staff-nm">سلمى</div><div class="staff-role">بشرة</div></div>
+          <div class="staff-chip" onclick="selectStaff(this,'ليلى','أخصائية أظافر')"><div class="staff-av">لي</div><div class="staff-nm">ليلى</div><div class="staff-role">أظافر</div></div>
+          <div class="staff-chip" onclick="selectStaff(this,'أي موظفة','متاحة')"><div class="staff-av" style="background:#f3f4f6;color:var(--text3)">🎲</div><div class="staff-nm">أي موظفة</div><div class="staff-role">متاحة</div></div>
+        </div>
+        <div style="display:flex;justify-content:flex-end;gap:.5rem;margin-top:1rem">
+          <button class="btn-ghost" onclick="goBstep(1)">السابق</button>
+          <button class="btn-primary" onclick="goBstep(3)">التالي</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: DATE/TIME -->
+      <div id="bstep3" style="display:none">
+        <div class="bm-label">اختاري التاريخ والوقت</div>
+        <div class="cal-nav-bar">
+          <button class="cal-nav-btn" onclick="calNav(-1)">›</button>
+          <div class="cal-month" id="calMonthLabel2">مايو 2025</div>
+          <button class="cal-nav-btn" onclick="calNav(1)">‹</button>
+        </div>
+        <div class="cal-grid" id="calGridModal">
+          <div class="cal-dn">أح</div><div class="cal-dn">إث</div><div class="cal-dn">ثل</div><div class="cal-dn">أر</div><div class="cal-dn">خم</div><div class="cal-dn">جم</div><div class="cal-dn">سب</div>
+          <div id="calDaysModal" style="display:contents"></div>
+        </div>
+        <div class="divider" style="margin:.85rem 0"></div>
+        <div class="bm-label">الأوقات المتاحة</div>
+        <div class="slots-grid" id="slotsGrid">
+          <div class="time-slot gone">9:00 ص</div><div class="time-slot" onclick="selSlot(this)">9:30 ص</div><div class="time-slot" onclick="selSlot(this)">10:00 ص</div><div class="time-slot gone">10:30 ص</div><div class="time-slot" onclick="selSlot(this)">11:00 ص</div><div class="time-slot" onclick="selSlot(this)">11:30 ص</div><div class="time-slot gone">12:00 م</div><div class="time-slot" onclick="selSlot(this)">12:30 م</div><div class="time-slot" onclick="selSlot(this)">1:00 م</div><div class="time-slot" onclick="selSlot(this)">2:00 م</div><div class="time-slot" onclick="selSlot(this)">3:00 م</div><div class="time-slot" onclick="selSlot(this)">3:30 م</div>
+        </div>
+        <div style="display:flex;justify-content:flex-end;gap:.5rem;margin-top:1rem">
+          <button class="btn-ghost" onclick="goBstep(2)">السابق</button>
+          <button class="btn-primary" onclick="goBstep(4)">التالي</button>
+        </div>
+      </div>
+
+      <!-- STEP 4: PAYMENT -->
+      <div id="bstep4" style="display:none">
+        <div class="sum-bar" id="sumBar" style="margin-bottom:1rem">
+          <div class="sum-item"><div class="sum-k">الخدمة</div><div class="sum-v" id="sumSvc">—</div></div>
+          <div class="sum-item"><div class="sum-k">الموظفة</div><div class="sum-v" id="sumStaff">—</div></div>
+          <div class="sum-item"><div class="sum-k">التاريخ</div><div class="sum-v" id="sumDate">—</div></div>
+          <div class="sum-item"><div class="sum-k">الوقت</div><div class="sum-v" id="sumTime">—</div></div>
+          <div class="sum-item"><div class="sum-k">السعر</div><div class="sum-v" id="sumPrice" style="color:var(--accent)">—</div></div>
+        </div>
+        <div class="bm-label">طريقة الدفع</div>
+        <div class="pay-opts" style="margin-bottom:1.25rem">
+          <label class="pay-opt sel" onclick="selPay(this)"><input type="radio" name="pay" checked> Apple Pay</label>
+          <label class="pay-opt" onclick="selPay(this)"><input type="radio" name="pay"> مدى / بطاقة ائتمان</label>
+          <label class="pay-opt" onclick="selPay(this)"><input type="radio" name="pay"> الدفع عند الحضور</label>
+        </div>
+        <div style="display:flex;gap:.5rem;margin-bottom:1rem">
+          <input type="text" placeholder="كوبون خصم" style="flex:1">
+          <button class="btn-ghost" onclick="toast('تم تطبيق خصم 15% ✓')">تطبيق</button>
+        </div>
+        <div style="display:flex;justify-content:flex-end;gap:.5rem;margin-bottom:.75rem">
+          <button class="btn-ghost" onclick="goBstep(3)">السابق</button>
+        </div>
+        <button class="confirm-btn" onclick="confirmBooking()">تأكيد الحجز ✓</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MAP FULL MODAL -->
+<div class="map-overlay" id="mapOverlay" onclick="overlayClick(event,'mapOverlay')">
+  <div class="map-modal">
+    <div class="map-modal-head">
+      <b id="mapModalTitle" style="font-size:15px;color:var(--brand)">موقع المشغل</b>
+      <button class="bmodal-close" onclick="closeModal('mapOverlay')">✕</button>
+    </div>
+    <div class="map-full"><iframe id="mapFullIframe" src="" loading="lazy" title="خريطة المشغل" allowfullscreen></iframe></div>
+    <div class="map-modal-foot">
+      <a id="mapDirectLink" href="#" target="_blank" class="btn-primary" style="text-decoration:none;font-size:13px">فتح في خرائط جوجل ↗</a>
+      <button class="btn-ghost" onclick="closeModal('mapOverlay')">إغلاق</button>
+    </div>
+  </div>
+</div>
+
+<!-- LOGIN MODAL -->
+<div class="map-overlay" id="loginOverlay" onclick="overlayClick(event,'loginOverlay')">
+  <div class="map-modal" style="max-width:400px">
+    <div class="map-modal-head"><b style="font-size:15px;color:var(--brand)">تسجيل الدخول</b><button class="bmodal-close" onclick="closeModal('loginOverlay')">✕</button></div>
+    <div style="padding:1.5rem">
+      <div style="display:flex;gap:.4rem;margin-bottom:1.25rem">
+        <button id="ltab1" class="btn-primary" style="flex:1;border-radius:100px;font-size:13px" onclick="setLoginTab(1)">عميلة</button>
+        <button id="ltab2" class="btn-ghost" style="flex:1;border-radius:100px;font-size:13px" onclick="setLoginTab(2)">مالكة مشغل</button>
+      </div>
+      <div class="gap-sm">
+        <div class="form-group"><div class="form-label">رقم الجوال / البريد</div><input type="text" placeholder="05xxxxxxxx"></div>
+        <div class="form-group"><div class="form-label">كلمة المرور</div><input type="password" placeholder="••••••••"></div>
+        <button class="btn-primary" style="border-radius:100px;padding:.75rem;font-size:15px;margin-top:.25rem" onclick="doQuickLogin()">دخول</button>
+        <div style="text-align:center;font-size:12px;color:var(--text3)">— أو دخول سريع —</div>
+        <div style="display:flex;gap:.4rem">
+          <button class="btn-ghost" style="flex:1;font-size:12px;border-radius:100px" onclick="loginAs('client')">دخول كعميلة</button>
+          <button class="btn-ghost" style="flex:1;font-size:12px;border-radius:100px" onclick="loginAs('owner')">دخول كمالكة</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const MONTHS=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+const DAYS=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
+
+const salons=[
+  {id:1,name:'مشغل الورد',emoji:'🌸',area:'حي النرجس، الرياض',rating:4.9,reviews:128,tags:['شعر','بشرة','أظافر'],from:80,hours:'9 ص – 9 م',avail:'متاح اليوم',cats:['hair','skin','nails'],
+   lat:24.7975,lng:46.6914,mapQ:'مشغل+الورد+حي+النرجس+الرياض',
+   services:[{name:'قص وسشوار',dur:'45 د',price:150},{name:'صبغة كاملة',dur:'90 د',price:280},{name:'عناية بالبشرة',dur:'60 د',price:200},{name:'مانيكير وبيدكير',dur:'50 د',price:120},{name:'كيراتين',dur:'120 د',price:450}]},
+  {id:2,name:'لوكشري بيوتي',emoji:'✨',area:'حي العليا، الرياض',rating:4.8,reviews:96,tags:['شعر','كيراتين'],from:120,hours:'10 ص – 10 م',avail:'',cats:['hair'],
+   lat:24.6921,lng:46.6761,mapQ:'لوكشري+بيوتي+العليا+الرياض',
+   services:[{name:'قص وسشوار',dur:'45 د',price:150},{name:'كيراتين',dur:'120 د',price:450},{name:'صبغة شعر',dur:'90 د',price:280}]},
+  {id:3,name:'نيل آرت ستوديو',emoji:'💅',area:'حي الملقا، الرياض',rating:4.7,reviews:54,tags:['أظافر','مانيكير'],from:80,hours:'10 ص – 9 م',avail:'متاح اليوم',cats:['nails'],
+   lat:24.8166,lng:46.6381,mapQ:'نيل+آرت+ستوديو+الملقا+الرياض',
+   services:[{name:'مانيكير',dur:'40 د',price:80},{name:'بيدكير',dur:'45 د',price:90},{name:'مانيكير وبيدكير',dur:'80 د',price:150},{name:'جل نيلز',dur:'60 د',price:120}]},
+  {id:4,name:'جلو سبا',emoji:'🧖‍♀️',area:'حي الحمراء، الرياض',rating:4.9,reviews:210,tags:['بشرة','سبا','مكياج'],from:150,hours:'9 ص – 11 م',avail:'متاح اليوم',cats:['skin','spa','makeup'],
+   lat:24.6408,lng:46.7724,mapQ:'جلو+سبا+الحمراء+الرياض',
+   services:[{name:'جلسة بشرة عميقة',dur:'60 د',price:200},{name:'مكياج عرائس',dur:'90 د',price:450},{name:'سبا استرخاء',dur:'75 د',price:280}]},
+  {id:5,name:'براوز كيو',emoji:'🪮',area:'حي الياسمين، الرياض',rating:4.6,reviews:78,tags:['حواجب','تصميم'],from:60,hours:'10 ص – 8 م',avail:'',cats:['brows'],
+   lat:24.8381,lng:46.6536,mapQ:'براوز+كيو+الياسمين+الرياض',
+   services:[{name:'تصميم الحواجب',dur:'30 د',price:60},{name:'تخفيف وتصميم',dur:'45 د',price:90},{name:'صبغة حواجب',dur:'20 د',price:40}]},
+  {id:6,name:'مشغل الياسمين',emoji:'🌼',area:'حي الملك عبدالله، الرياض',rating:4.8,reviews:143,tags:['شعر','بشرة'],from:100,hours:'9 ص – 9 م',avail:'متاح اليوم',cats:['hair','skin'],
+   lat:24.7526,lng:46.6887,mapQ:'مشغل+الياسمين+الرياض',
+   services:[{name:'قص وسشوار',dur:'45 د',price:140},{name:'صبغة كاملة',dur:'85 د',price:260},{name:'بوتوكس شعر',dur:'90 د',price:380}]}
+];
+
+let filteredSalons=[...salons];
+let curCat='all';
+let bState={salonId:null,svcName:'',svcPrice:0,staffName:'',date:'',time:'',step:1};
+let calM=4,calY=2025;
+let currentView='home';
+let userRole='guest';
+
+function mapSrc(q,lat,lng){
+  return `https://maps.google.com/maps?q=${lat},${lng}&z=15&output=embed&hl=ar`;
+}
+function mapLink(lat,lng,q){
+  return `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+}
+
+function renderSalons(){
+  const g=document.getElementById('salonsGrid');
+  if(!filteredSalons.length){g.innerHTML='<div style="text-align:center;padding:3rem;color:var(--text3);grid-column:1/-1">لا توجد نتائج</div>';return;}
+  g.innerHTML=filteredSalons.map(s=>`
+    <div class="salon-card" id="scard-${s.id}">
+      <div class="salon-map">
+        <iframe src="${mapSrc(s.mapQ,s.lat,s.lng)}" title="${s.name}" loading="lazy" allowfullscreen></iframe>
+        <a class="salon-map-expand" onclick="openFullMap(${s.id});return false" href="#">📍 عرض الخريطة</a>
+      </div>
+      <div class="salon-body">
+        <div class="salon-top">
+          <div class="salon-name">${s.emoji} ${s.name}</div>
+          <div class="salon-rating"><span>⭐</span> ${s.rating} (${s.reviews})</div>
+        </div>
+        <div class="salon-loc">📍 ${s.area}</div>
+        ${s.avail?`<div class="salon-avail">✓ ${s.avail}</div>`:''}
+        <div class="salon-tags">${s.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+        <div class="salon-bottom">
+          <div class="salon-price">تبدأ من <b>${s.from} ريال</b> · ⏰ ${s.hours}</div>
+          <button class="book-btn" onclick="showBookingModal(salons.find(x=>x.id===${s.id}))">احجز الآن</button>
+        </div>
+      </div>
+    </div>`).join('');
+  document.getElementById('salonCount').textContent=filteredSalons.length+' مشغل في الرياض';
+}
+
+function filterSalons(q){
+  q=q.trim().toLowerCase();
+  filteredSalons=salons.filter(s=>{
+    const matchCat=curCat==='all'||s.cats.includes(curCat);
+    const matchQ=!q||s.name.includes(q)||s.area.includes(q)||s.tags.join('').includes(q)||s.services.some(sv=>sv.name.toLowerCase().includes(q));
+    return matchCat&&matchQ;
+  });
+  renderSalons();
+}
+
+function filterByCategory(cat,el){
+  curCat=cat;
+  document.querySelectorAll('.cat-card').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  filterSalons(document.getElementById('heroSearch').value);
+}
+
+function openFullMap(salonId){
+  const s=salons.find(x=>x.id===salonId);
+  if(!s)return;
+  document.getElementById('mapModalTitle').textContent=s.emoji+' '+s.name+' — الموقع';
+  document.getElementById('mapFullIframe').src=mapSrc(s.mapQ,s.lat,s.lng);
+  document.getElementById('mapDirectLink').href=mapLink(s.lat,s.lng,s.mapQ);
+  document.getElementById('mapOverlay').classList.add('open');
+}
+
+function showBookingModal(s){
+  if(!s)return;
+  bState={salonId:s.id,svcName:'',svcPrice:0,staffName:'',date:'',time:'',step:1};
+  document.getElementById('bmodal-salonName').textContent=s.emoji+' '+s.name;
+  document.getElementById('bmodalMapIframe').src=mapSrc(s.mapQ,s.lat,s.lng);
+  document.getElementById('bmodalMapLink').href=mapLink(s.lat,s.lng,s.mapQ);
+  document.getElementById('bmodalMapLink').textContent='📍 '+s.area+' — فتح في خرائط جوجل ↗';
+  const sl=document.getElementById('servicesList');
+  sl.innerHTML=s.services.map(sv=>`
+    <div class="svc-item" onclick="selService(this,'${sv.name}',${sv.price})">
+      <div><div>${sv.name}</div><div class="svc-meta">⏱ ${sv.dur}</div></div>
+      <div class="svc-price">${sv.price} ريال</div>
+    </div>`).join('');
+  goBstep(1);
+  renderCalModal();
+  document.getElementById('bookingOverlay').classList.add('open');
+}
+
+function selService(el,name,price){
+  document.querySelectorAll('.svc-item').forEach(x=>x.classList.remove('sel'));
+  el.classList.add('sel');
+  bState.svcName=name;bState.svcPrice=price;
+  setTimeout(()=>goBstep(2),300);
+}
+
+function selectStaff(el,name,role){
+  document.querySelectorAll('.staff-chip').forEach(x=>x.classList.remove('sel'));
+  el.classList.add('sel');
+  bState.staffName=name;
+}
+
+function selSlot(el){
+  document.querySelectorAll('.time-slot').forEach(x=>x.classList.remove('sel'));
+  el.classList.add('sel');
+  bState.time=el.textContent.trim();
+}
+
+function selPay(el){
+  document.querySelectorAll('.pay-opt').forEach(x=>x.classList.remove('sel'));
+  el.classList.add('sel');
+}
+
+function goBstep(n){
+  bState.step=n;
+  [1,2,3,4].forEach(i=>{
+    document.getElementById('bstep'+i).style.display=i===n?'block':'none';
+    const d=document.getElementById('sdot'+i);
+    d.classList.remove('active','done');
+    if(i<n)d.classList.add('done');
+    else if(i===n)d.classList.add('active');
+  });
+  if(n===4) fillSummary();
+}
+
+function fillSummary(){
+  document.getElementById('sumSvc').textContent=bState.svcName||'—';
+  document.getElementById('sumStaff').textContent=bState.staffName||'أي موظفة';
+  document.getElementById('sumDate').textContent=bState.date||'اليوم';
+  document.getElementById('sumTime').textContent=bState.time||'—';
+  document.getElementById('sumPrice').textContent=(bState.svcPrice||0)+' ريال';
+}
+
+function confirmBooking(){
+  closeModal('bookingOverlay');
+  toast('✅ تم تأكيد حجزك! ستصلك رسالة على جوالك');
+}
+
+function renderCalModal(){
+  const label=document.getElementById('calMonthLabel2');
+  if(label) label.textContent=MONTHS[calM]+' '+calY;
+  const c=document.getElementById('calDaysModal');
+  if(!c)return;
+  const fd=new Date(calY,calM,1).getDay();
+  const dm=new Date(calY,calM+1,0).getDate();
+  const today=25;
+  let h='';
+  for(let i=0;i<fd;i++) h+='<div class="cal-day empty"></div>';
+  for(let d=1;d<=dm;d++){
+    const cls=d===today?' today':d<today?' disabled':'';
+    const oc=d>=today?`onclick="pickDay(this,${d})"`:'';
+    h+=`<div class="cal-day${cls}" ${oc}>${d}</div>`;
+  }
+  c.innerHTML=h;
+}
+
+function pickDay(el,d){
+  document.querySelectorAll('#calDaysModal .cal-day').forEach(x=>x.classList.remove('sel'));
+  el.classList.add('sel');
+  bState.date=DAYS[new Date(calY,calM,d).getDay()]+' '+d+' '+MONTHS[calM];
+}
+
+function calNav(dir){
+  calM+=dir;
+  if(calM>11){calM=0;calY++;}
+  if(calM<0){calM=11;calY--;}
+  renderCalModal();
+}
+
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+function overlayClick(e,id){if(e.target===e.currentTarget)closeModal(id);}
+
+let _tt;
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  clearTimeout(_tt);_tt=setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+function showView(v){
+  currentView=v;
+  document.getElementById('view-home').style.display=v==='home'?'block':'none';
+  document.getElementById('view-ownerPanel').style.display=v==='ownerPanel'?'block':'none';
+}
+
+function showPanelPage(id,navEl){
+  ['pDash','pBookings','pStaff','pServices','pSettings'].forEach(p=>{
+    const el=document.getElementById(p);if(el)el.style.display=p===id?'block':'none';
+  });
+  document.querySelectorAll('.panel-nav-item').forEach(n=>n.classList.remove('active'));
+  if(navEl) navEl.classList.add('active');
+}
+
+function loginAs(role){
+  userRole=role;
+  closeModal('loginOverlay');
+  if(role==='owner'){showView('ownerPanel');}
+  else{showView('home'); toast('مرحباً بك 👋');}
+}
+
+function doQuickLogin(){loginAs('client');}
+
+function showLoginModal(){document.getElementById('loginOverlay').classList.add('open');}
+
+function setLoginTab(t){
+  document.getElementById('ltab1').className=t===1?'btn-primary':'btn-ghost';
+  document.getElementById('ltab1').style='flex:1;border-radius:100px;font-size:13px';
+  document.getElementById('ltab2').className=t===2?'btn-primary':'btn-ghost';
+  document.getElementById('ltab2').style='flex:1;border-radius:100px;font-size:13px';
+}
+
+function handleHeroUpload(input){
+  if(!input.files||!input.files[0])return;
+  const r=new FileReader();
+  r.onload=function(e){
+    const img=document.getElementById('heroImg');
+    const uimg=document.getElementById('heroUploadedImg');
+    img.src=e.target.result;img.style.display='block';
+    uimg.src=e.target.result;uimg.style.display='block';
+    document.getElementById('heroBgSvg').style.display='none';
+    document.getElementById('upload-zone').classList.remove('show');
+    toast('تم رفع الصورة المميزة ✓');
+  };
+  r.readAsDataURL(input.files[0]);
+}
+
+function toggleMobileMenu(){
+  document.getElementById('panelSidebar').classList.toggle('open');
+}
+
+window.onload=function(){
+  renderSalons();
+  renderCalModal();
+};
+</script>
+</body>
+</html>
